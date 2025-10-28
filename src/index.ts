@@ -54,7 +54,7 @@ async function runServer() {
 		});
 		await httpServer.startServer();
 	} else {
-		console.log("Starting MCP server in stdio mode");
+		// Note: Cannot use console.log in stdio mode as it interferes with MCP protocol
 		const transport = new StdioServerTransport();
 		await server.connect(transport);
 	}

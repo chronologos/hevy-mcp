@@ -84,10 +84,3 @@ Each MCP tool follows this pattern:
 4. Error handling with descriptive messages
 
 The tools are organized by domain and registered in the main server file.
-
-## Tool Requirements
-
-### Documentation and Research
-- **Context7**: MUST use Context7 for any library and API documentation needs
-- **GitHub Integration**: MUST use the GitHub MCP server for all GitHub interactions and only use `gh` if there is a problem with the personal access token
-- **AI Feedback**: MUST ask Gemini for feedback (about a design, code review, etc.) but remember Gemini has no memory so everything must be provided in the prompt and you must refer to files using the @ syntax

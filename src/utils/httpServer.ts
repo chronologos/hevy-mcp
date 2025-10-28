@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto";
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import { isInitializeRequest } from "@modelcontextprotocol/sdk/types.js";
-import express from "express";
+import express, { type Express } from "express";
 
 // Map to store transports by session ID
 const transports = new Map<
@@ -42,7 +42,12 @@ export function createHttpServer(
 		enableDnsRebindingProtection?: boolean;
 		allowedHosts?: string[];
 	},
-) {
+): {
+	app: Express;
+	startServer: () => Promise<void>;
+	getActiveSessionsCount: () => number;
+	closeAllSessions: () => void;
+} {
 	const app = express();
 	const port = options?.port || 3000;
 	const host = options?.host || "127.0.0.1";
