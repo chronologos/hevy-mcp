@@ -1,5 +1,7 @@
 #!/usr/bin/env node
-import "@dotenvx/dotenvx/config";
+import { config } from "@dotenvx/dotenvx";
+// Configure dotenvx to be quiet (no stdout pollution in stdio mode)
+config({ quiet: true });
 // Import tool registration functions
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";

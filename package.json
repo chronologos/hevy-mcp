@@ -1,5 +1,5 @@
 {
-	"name": "hevy-mcp",
+	"name": "@iantay/hevy-mcp",
 	"version": "1.10.15",
 	"main": "dist/index.js",
 	"module": "dist/index.js",
@@ -8,7 +8,9 @@
 		"dist",
 		"README.md"
 	],
-	"access": "public",
+	"publishConfig": {
+		"access": "public"
+	},
 	"bugs": {
 		"url": "https://github.com/chrisdoc/hevy-mcp/issues"
 	},
