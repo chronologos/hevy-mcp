@@ -1,18 +1,4 @@
-# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
-
 runtime: "typescript"
-env:
-  MCP_TRANSPORT: "http"
-startCommand:
-  type: "http"
-  configSchema:
-    # JSON Schema defining the configuration options for the MCP.
-    type: object
-    required:
-      - HEVY_API_KEY
-    properties:
-      HEVY_API_KEY:
-        type: string
-        description: Your Hevy API key to authenticate with the Hevy Fitness API.
-  exampleConfig:
-    HEVY_API_KEY: "your-hevy-api-key-here"
+# Optional fields like name/description/links are inferred automatically for the
+# TypeScript runtime. Configuration is handled via the exported configSchema in
+# src/index.ts, which prompts for HEVY_API_KEY.

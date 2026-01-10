@@ -3,17 +3,26 @@
  * Do not edit manually.
  */
 
-import fetch from '@kubb/plugin-client/clients/axios'
+import fetch from "@kubb/plugin-client/clients/axios";
 import type {
   GetV1ExerciseTemplatesExercisetemplateidQueryResponse,
   GetV1ExerciseTemplatesExercisetemplateidPathParams,
   GetV1ExerciseTemplatesExercisetemplateidHeaderParams,
   GetV1ExerciseTemplatesExercisetemplateid404,
-} from '../types/GetV1ExerciseTemplatesExercisetemplateid.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+} from "../types/GetV1ExerciseTemplatesExercisetemplateid.ts";
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+} from "@kubb/plugin-client/clients/axios";
 
-function getGetV1ExerciseTemplatesExercisetemplateidUrl(exerciseTemplateId: GetV1ExerciseTemplatesExercisetemplateidPathParams['exerciseTemplateId']) {
-  return `/v1/exercise_templates/${exerciseTemplateId}` as const
+function getGetV1ExerciseTemplatesExercisetemplateidUrl(
+  exerciseTemplateId: GetV1ExerciseTemplatesExercisetemplateidPathParams["exerciseTemplateId"],
+) {
+  const res = {
+    method: "GET",
+    url: `/v1/exercise_templates/${exerciseTemplateId}` as const,
+  };
+  return res;
 }
 
 /**
@@ -21,17 +30,23 @@ function getGetV1ExerciseTemplatesExercisetemplateidUrl(exerciseTemplateId: GetV
  * {@link /v1/exercise_templates/:exerciseTemplateId}
  */
 export async function getV1ExerciseTemplatesExercisetemplateid(
-  exerciseTemplateId: GetV1ExerciseTemplatesExercisetemplateidPathParams['exerciseTemplateId'],
+  exerciseTemplateId: GetV1ExerciseTemplatesExercisetemplateidPathParams["exerciseTemplateId"],
   headers: GetV1ExerciseTemplatesExercisetemplateidHeaderParams,
   config: Partial<RequestConfig> & { client?: typeof fetch } = {},
 ) {
-  const { client: request = fetch, ...requestConfig } = config
+  const { client: request = fetch, ...requestConfig } = config;
 
-  const res = await request<GetV1ExerciseTemplatesExercisetemplateidQueryResponse, ResponseErrorConfig<GetV1ExerciseTemplatesExercisetemplateid404>, unknown>({
-    method: 'GET',
-    url: getGetV1ExerciseTemplatesExercisetemplateidUrl(exerciseTemplateId).toString(),
+  const res = await request<
+    GetV1ExerciseTemplatesExercisetemplateidQueryResponse,
+    ResponseErrorConfig<GetV1ExerciseTemplatesExercisetemplateid404>,
+    unknown
+  >({
+    method: "GET",
+    url: getGetV1ExerciseTemplatesExercisetemplateidUrl(
+      exerciseTemplateId,
+    ).url.toString(),
     ...requestConfig,
     headers: { ...headers, ...requestConfig.headers },
-  })
-  return res.data
+  });
+  return res.data;
 }

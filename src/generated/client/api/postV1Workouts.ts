@@ -3,12 +3,21 @@
  * Do not edit manually.
  */
 
-import fetch from '@kubb/plugin-client/clients/axios'
-import type { PostV1WorkoutsMutationRequest, PostV1WorkoutsMutationResponse, PostV1WorkoutsHeaderParams, PostV1Workouts400 } from '../types/PostV1Workouts.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+import fetch from "@kubb/plugin-client/clients/axios";
+import type {
+  PostV1WorkoutsMutationRequest,
+  PostV1WorkoutsMutationResponse,
+  PostV1WorkoutsHeaderParams,
+  PostV1Workouts400,
+} from "../types/PostV1Workouts.ts";
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+} from "@kubb/plugin-client/clients/axios";
 
 function getPostV1WorkoutsUrl() {
-  return `/v1/workouts` as const
+  const res = { method: "POST", url: `/v1/workouts` as const };
+  return res;
 }
 
 /**
@@ -18,17 +27,24 @@ function getPostV1WorkoutsUrl() {
 export async function postV1Workouts(
   headers: PostV1WorkoutsHeaderParams,
   data?: PostV1WorkoutsMutationRequest,
-  config: Partial<RequestConfig<PostV1WorkoutsMutationRequest>> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig<PostV1WorkoutsMutationRequest>> & {
+    client?: typeof fetch;
+  } = {},
 ) {
-  const { client: request = fetch, ...requestConfig } = config
+  const { client: request = fetch, ...requestConfig } = config;
 
-  const requestData = data
-  const res = await request<PostV1WorkoutsMutationResponse, ResponseErrorConfig<PostV1Workouts400>, PostV1WorkoutsMutationRequest>({
-    method: 'POST',
-    url: getPostV1WorkoutsUrl().toString(),
+  const requestData = data;
+
+  const res = await request<
+    PostV1WorkoutsMutationResponse,
+    ResponseErrorConfig<PostV1Workouts400>,
+    PostV1WorkoutsMutationRequest
+  >({
+    method: "POST",
+    url: getPostV1WorkoutsUrl().url.toString(),
     data: requestData,
     ...requestConfig,
     headers: { ...headers, ...requestConfig.headers },
-  })
-  return res.data
+  });
+  return res.data;
 }

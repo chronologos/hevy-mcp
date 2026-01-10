@@ -3,20 +3,24 @@
  * Do not edit manually.
  */
 
-import type { PostRoutinesRequestBody } from '../types/PostRoutinesRequestBody.ts'
-import { createPostRoutinesRequestExercise } from './createPostRoutinesRequestExercise.ts'
-import { faker } from '@faker-js/faker'
+import type { PostRoutinesRequestBody } from "../types/PostRoutinesRequestBody.ts";
+import { createPostRoutinesRequestExercise } from "./createPostRoutinesRequestExercise.ts";
+import { faker } from "@faker-js/faker";
 
-export function createPostRoutinesRequestBody(data?: Partial<PostRoutinesRequestBody>): PostRoutinesRequestBody {
+export function createPostRoutinesRequestBody(
+  data?: Partial<PostRoutinesRequestBody>,
+): PostRoutinesRequestBody {
   return {
     ...{
       routine: {
         title: faker.string.alpha(),
         folder_id: faker.number.float(),
         notes: faker.string.alpha(),
-        exercises: faker.helpers.multiple(() => createPostRoutinesRequestExercise()),
+        exercises: faker.helpers.multiple(() =>
+          createPostRoutinesRequestExercise(),
+        ),
       },
     },
     ...(data || {}),
-  }
+  };
 }

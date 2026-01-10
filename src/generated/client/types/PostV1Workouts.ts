@@ -3,20 +3,20 @@
  * Do not edit manually.
  */
 
-import type { PostWorkoutsRequestBody } from './PostWorkoutsRequestBody.ts'
-import type { Workout } from './Workout.ts'
+import type { PostWorkoutsRequestBody } from "./PostWorkoutsRequestBody.ts";
+import type { Workout } from "./Workout.ts";
 
 export type PostV1WorkoutsHeaderParams = {
   /**
    * @type string, uuid
    */
-  'api-key': string
-}
+  "api-key": string;
+};
 
 /**
  * @description The workout was successfully created
  */
-export type PostV1Workouts201 = Workout
+export type PostV1Workouts201 = Workout;
 
 /**
  * @description Invalid request body
@@ -26,16 +26,16 @@ export type PostV1Workouts400 = {
    * @description Error message
    * @type string | undefined
    */
-  error?: string
-}
+  error?: string;
+};
 
-export type PostV1WorkoutsMutationRequest = PostWorkoutsRequestBody
+export type PostV1WorkoutsMutationRequest = PostWorkoutsRequestBody;
 
-export type PostV1WorkoutsMutationResponse = PostV1Workouts201
+export type PostV1WorkoutsMutationResponse = PostV1Workouts201;
 
 export type PostV1WorkoutsMutation = {
-  Response: PostV1Workouts201
-  Request: PostV1WorkoutsMutationRequest
-  HeaderParams: PostV1WorkoutsHeaderParams
-  Errors: PostV1Workouts400
-}
+  Response: PostV1Workouts201;
+  Request: PostV1WorkoutsMutationRequest;
+  HeaderParams: PostV1WorkoutsHeaderParams;
+  Errors: PostV1Workouts400;
+};

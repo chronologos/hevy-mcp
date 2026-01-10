@@ -3,7 +3,7 @@
  * Do not edit manually.
  */
 
-import type { RoutineFolder } from './RoutineFolder.ts'
+import type { RoutineFolder } from "./RoutineFolder.ts";
 
 export type GetV1RoutineFoldersQueryParams = {
   /**
@@ -11,21 +11,21 @@ export type GetV1RoutineFoldersQueryParams = {
    * @default 1
    * @type integer | undefined
    */
-  page?: number
+  page?: number;
   /**
    * @description Number of items on the requested page (Max 10)
    * @default 5
    * @type integer | undefined
    */
-  pageSize?: number
-}
+  pageSize?: number;
+};
 
 export type GetV1RoutineFoldersHeaderParams = {
   /**
    * @type string, uuid
    */
-  'api-key': string
-}
+  "api-key": string;
+};
 
 /**
  * @description A paginated list of routine folders
@@ -36,29 +36,29 @@ export type GetV1RoutineFolders200 = {
    * @default 1
    * @type integer | undefined
    */
-  page?: number
+  page?: number;
   /**
    * @description Total number of pages
    * @default 5
    * @type integer | undefined
    */
-  page_count?: number
+  page_count?: number;
   /**
    * @type array | undefined
    */
-  routine_folders?: RoutineFolder[]
-}
+  routine_folders?: RoutineFolder[];
+};
 
 /**
  * @description Invalid page size
  */
-export type GetV1RoutineFolders400 = any
+export type GetV1RoutineFolders400 = any;
 
-export type GetV1RoutineFoldersQueryResponse = GetV1RoutineFolders200
+export type GetV1RoutineFoldersQueryResponse = GetV1RoutineFolders200;
 
 export type GetV1RoutineFoldersQuery = {
-  Response: GetV1RoutineFolders200
-  QueryParams: GetV1RoutineFoldersQueryParams
-  HeaderParams: GetV1RoutineFoldersHeaderParams
-  Errors: GetV1RoutineFolders400
-}
+  Response: GetV1RoutineFolders200;
+  QueryParams: GetV1RoutineFoldersQueryParams;
+  HeaderParams: GetV1RoutineFoldersHeaderParams;
+  Errors: GetV1RoutineFolders400;
+};

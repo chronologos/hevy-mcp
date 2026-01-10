@@ -3,17 +3,23 @@
  * Do not edit manually.
  */
 
-import fetch from '@kubb/plugin-client/clients/axios'
+import fetch from "@kubb/plugin-client/clients/axios";
 import type {
   GetV1RoutinesRoutineidQueryResponse,
   GetV1RoutinesRoutineidPathParams,
   GetV1RoutinesRoutineidHeaderParams,
   GetV1RoutinesRoutineid400,
-} from '../types/GetV1RoutinesRoutineid.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+} from "../types/GetV1RoutinesRoutineid.ts";
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+} from "@kubb/plugin-client/clients/axios";
 
-function getGetV1RoutinesRoutineidUrl(routineId: GetV1RoutinesRoutineidPathParams['routineId']) {
-  return `/v1/routines/${routineId}` as const
+function getGetV1RoutinesRoutineidUrl(
+  routineId: GetV1RoutinesRoutineidPathParams["routineId"],
+) {
+  const res = { method: "GET", url: `/v1/routines/${routineId}` as const };
+  return res;
 }
 
 /**
@@ -21,17 +27,21 @@ function getGetV1RoutinesRoutineidUrl(routineId: GetV1RoutinesRoutineidPathParam
  * {@link /v1/routines/:routineId}
  */
 export async function getV1RoutinesRoutineid(
-  routineId: GetV1RoutinesRoutineidPathParams['routineId'],
+  routineId: GetV1RoutinesRoutineidPathParams["routineId"],
   headers: GetV1RoutinesRoutineidHeaderParams,
   config: Partial<RequestConfig> & { client?: typeof fetch } = {},
 ) {
-  const { client: request = fetch, ...requestConfig } = config
+  const { client: request = fetch, ...requestConfig } = config;
 
-  const res = await request<GetV1RoutinesRoutineidQueryResponse, ResponseErrorConfig<GetV1RoutinesRoutineid400>, unknown>({
-    method: 'GET',
-    url: getGetV1RoutinesRoutineidUrl(routineId).toString(),
+  const res = await request<
+    GetV1RoutinesRoutineidQueryResponse,
+    ResponseErrorConfig<GetV1RoutinesRoutineid400>,
+    unknown
+  >({
+    method: "GET",
+    url: getGetV1RoutinesRoutineidUrl(routineId).url.toString(),
     ...requestConfig,
     headers: { ...headers, ...requestConfig.headers },
-  })
-  return res.data
+  });
+  return res.data;
 }

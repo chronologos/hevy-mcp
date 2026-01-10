@@ -3,10 +3,12 @@
  * Do not edit manually.
  */
 
-import { workoutSchema } from './workoutSchema.ts'
-import { z } from 'zod'
+import { workoutSchema } from "./workoutSchema.ts";
+import { z } from "zod/v4";
 
 export const updatedWorkoutSchema = z.object({
-  type: z.string().describe('Indicates the type of the event (updated)'),
-  workout: z.lazy(() => workoutSchema),
-})
+  type: z.string().describe("Indicates the type of the event (updated)"),
+  get workout() {
+    return workoutSchema;
+  },
+});

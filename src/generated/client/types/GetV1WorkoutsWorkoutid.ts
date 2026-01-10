@@ -3,34 +3,38 @@
  * Do not edit manually.
  */
 
-import type { Workout } from './Workout.ts'
+import type { Workout } from "./Workout.ts";
 
 export type GetV1WorkoutsWorkoutidPathParams = {
-  workoutId: any
-}
+  /**
+   * @description The id of the workout
+   * @type string
+   */
+  workoutId: string;
+};
 
 export type GetV1WorkoutsWorkoutidHeaderParams = {
   /**
    * @type string, uuid
    */
-  'api-key': string
-}
+  "api-key": string;
+};
 
 /**
  * @description Success
  */
-export type GetV1WorkoutsWorkoutid200 = Workout
+export type GetV1WorkoutsWorkoutid200 = Workout;
 
 /**
  * @description Workout not found
  */
-export type GetV1WorkoutsWorkoutid404 = any
+export type GetV1WorkoutsWorkoutid404 = any;
 
-export type GetV1WorkoutsWorkoutidQueryResponse = GetV1WorkoutsWorkoutid200
+export type GetV1WorkoutsWorkoutidQueryResponse = GetV1WorkoutsWorkoutid200;
 
 export type GetV1WorkoutsWorkoutidQuery = {
-  Response: GetV1WorkoutsWorkoutid200
-  PathParams: GetV1WorkoutsWorkoutidPathParams
-  HeaderParams: GetV1WorkoutsWorkoutidHeaderParams
-  Errors: GetV1WorkoutsWorkoutid404
-}
+  Response: GetV1WorkoutsWorkoutid200;
+  PathParams: GetV1WorkoutsWorkoutidPathParams;
+  HeaderParams: GetV1WorkoutsWorkoutidHeaderParams;
+  Errors: GetV1WorkoutsWorkoutid404;
+};

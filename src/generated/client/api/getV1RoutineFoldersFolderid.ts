@@ -3,17 +3,26 @@
  * Do not edit manually.
  */
 
-import fetch from '@kubb/plugin-client/clients/axios'
+import fetch from "@kubb/plugin-client/clients/axios";
 import type {
   GetV1RoutineFoldersFolderidQueryResponse,
   GetV1RoutineFoldersFolderidPathParams,
   GetV1RoutineFoldersFolderidHeaderParams,
   GetV1RoutineFoldersFolderid404,
-} from '../types/GetV1RoutineFoldersFolderid.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+} from "../types/GetV1RoutineFoldersFolderid.ts";
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+} from "@kubb/plugin-client/clients/axios";
 
-function getGetV1RoutineFoldersFolderidUrl(folderId: GetV1RoutineFoldersFolderidPathParams['folderId']) {
-  return `/v1/routine_folders/${folderId}` as const
+function getGetV1RoutineFoldersFolderidUrl(
+  folderId: GetV1RoutineFoldersFolderidPathParams["folderId"],
+) {
+  const res = {
+    method: "GET",
+    url: `/v1/routine_folders/${folderId}` as const,
+  };
+  return res;
 }
 
 /**
@@ -21,17 +30,21 @@ function getGetV1RoutineFoldersFolderidUrl(folderId: GetV1RoutineFoldersFolderid
  * {@link /v1/routine_folders/:folderId}
  */
 export async function getV1RoutineFoldersFolderid(
-  folderId: GetV1RoutineFoldersFolderidPathParams['folderId'],
+  folderId: GetV1RoutineFoldersFolderidPathParams["folderId"],
   headers: GetV1RoutineFoldersFolderidHeaderParams,
   config: Partial<RequestConfig> & { client?: typeof fetch } = {},
 ) {
-  const { client: request = fetch, ...requestConfig } = config
+  const { client: request = fetch, ...requestConfig } = config;
 
-  const res = await request<GetV1RoutineFoldersFolderidQueryResponse, ResponseErrorConfig<GetV1RoutineFoldersFolderid404>, unknown>({
-    method: 'GET',
-    url: getGetV1RoutineFoldersFolderidUrl(folderId).toString(),
+  const res = await request<
+    GetV1RoutineFoldersFolderidQueryResponse,
+    ResponseErrorConfig<GetV1RoutineFoldersFolderid404>,
+    unknown
+  >({
+    method: "GET",
+    url: getGetV1RoutineFoldersFolderidUrl(folderId).url.toString(),
     ...requestConfig,
     headers: { ...headers, ...requestConfig.headers },
-  })
-  return res.data
+  });
+  return res.data;
 }

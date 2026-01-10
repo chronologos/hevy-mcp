@@ -3,7 +3,7 @@
  * Do not edit manually.
  */
 
-import type { ExerciseTemplate } from './ExerciseTemplate.ts'
+import type { ExerciseTemplate } from "./ExerciseTemplate.ts";
 
 export type GetV1ExerciseTemplatesQueryParams = {
   /**
@@ -11,21 +11,21 @@ export type GetV1ExerciseTemplatesQueryParams = {
    * @default 1
    * @type integer | undefined
    */
-  page?: number
+  page?: number;
   /**
    * @description Number of items on the requested page (Max 100)
    * @default 5
    * @type integer | undefined
    */
-  pageSize?: number
-}
+  pageSize?: number;
+};
 
 export type GetV1ExerciseTemplatesHeaderParams = {
   /**
    * @type string, uuid
    */
-  'api-key': string
-}
+  "api-key": string;
+};
 
 /**
  * @description A paginated list of exercise templates
@@ -36,29 +36,29 @@ export type GetV1ExerciseTemplates200 = {
    * @default 1
    * @type integer | undefined
    */
-  page?: number
+  page?: number;
   /**
    * @description Total number of pages
    * @default 5
    * @type integer | undefined
    */
-  page_count?: number
+  page_count?: number;
   /**
    * @type array | undefined
    */
-  exercise_templates?: ExerciseTemplate[]
-}
+  exercise_templates?: ExerciseTemplate[];
+};
 
 /**
  * @description Invalid page size
  */
-export type GetV1ExerciseTemplates400 = any
+export type GetV1ExerciseTemplates400 = any;
 
-export type GetV1ExerciseTemplatesQueryResponse = GetV1ExerciseTemplates200
+export type GetV1ExerciseTemplatesQueryResponse = GetV1ExerciseTemplates200;
 
 export type GetV1ExerciseTemplatesQuery = {
-  Response: GetV1ExerciseTemplates200
-  QueryParams: GetV1ExerciseTemplatesQueryParams
-  HeaderParams: GetV1ExerciseTemplatesHeaderParams
-  Errors: GetV1ExerciseTemplates400
-}
+  Response: GetV1ExerciseTemplates200;
+  QueryParams: GetV1ExerciseTemplatesQueryParams;
+  HeaderParams: GetV1ExerciseTemplatesHeaderParams;
+  Errors: GetV1ExerciseTemplates400;
+};

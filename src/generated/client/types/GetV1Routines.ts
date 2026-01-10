@@ -3,7 +3,7 @@
  * Do not edit manually.
  */
 
-import type { Routine } from './Routine.ts'
+import type { Routine } from "./Routine.ts";
 
 export type GetV1RoutinesQueryParams = {
   /**
@@ -11,21 +11,21 @@ export type GetV1RoutinesQueryParams = {
    * @default 1
    * @type integer | undefined
    */
-  page?: number
+  page?: number;
   /**
    * @description Number of items on the requested page (Max 10)
    * @default 5
    * @type integer | undefined
    */
-  pageSize?: number
-}
+  pageSize?: number;
+};
 
 export type GetV1RoutinesHeaderParams = {
   /**
    * @type string, uuid
    */
-  'api-key': string
-}
+  "api-key": string;
+};
 
 /**
  * @description A paginated list of routines
@@ -35,28 +35,28 @@ export type GetV1Routines200 = {
    * @description Current page number
    * @type integer | undefined
    */
-  page?: number
+  page?: number;
   /**
    * @description Total number of pages
    * @type integer | undefined
    */
-  page_count?: number
+  page_count?: number;
   /**
    * @type array | undefined
    */
-  routines?: Routine[]
-}
+  routines?: Routine[];
+};
 
 /**
  * @description Invalid page size
  */
-export type GetV1Routines400 = any
+export type GetV1Routines400 = any;
 
-export type GetV1RoutinesQueryResponse = GetV1Routines200
+export type GetV1RoutinesQueryResponse = GetV1Routines200;
 
 export type GetV1RoutinesQuery = {
-  Response: GetV1Routines200
-  QueryParams: GetV1RoutinesQueryParams
-  HeaderParams: GetV1RoutinesHeaderParams
-  Errors: GetV1Routines400
-}
+  Response: GetV1Routines200;
+  QueryParams: GetV1RoutinesQueryParams;
+  HeaderParams: GetV1RoutinesHeaderParams;
+  Errors: GetV1Routines400;
+};

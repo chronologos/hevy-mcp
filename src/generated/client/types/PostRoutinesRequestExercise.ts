@@ -3,31 +3,31 @@
  * Do not edit manually.
  */
 
-import type { PostRoutinesRequestSet } from './PostRoutinesRequestSet.ts'
+import type { PostRoutinesRequestSet } from "./PostRoutinesRequestSet.ts";
 
 export type PostRoutinesRequestExercise = {
   /**
    * @description The ID of the exercise template.
    * @type string | undefined
    */
-  exercise_template_id?: string
+  exercise_template_id?: string;
   /**
    * @description The ID of the superset.
    * @type integer
    */
-  superset_id?: number | null
+  superset_id?: number | null;
   /**
    * @description The rest time in seconds.
    * @type integer
    */
-  rest_seconds?: number | null
+  rest_seconds?: number | null;
   /**
    * @description Additional notes for the exercise.
    * @type string
    */
-  notes?: string | null
+  notes?: string | null;
   /**
    * @type array | undefined
    */
-  sets?: PostRoutinesRequestSet[]
-}
+  sets?: PostRoutinesRequestSet[];
+};

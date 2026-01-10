@@ -3,24 +3,28 @@
  * Do not edit manually.
  */
 
-import type { PostWorkoutsRequestBody } from './PostWorkoutsRequestBody.ts'
-import type { Workout } from './Workout.ts'
+import type { PostWorkoutsRequestBody } from "./PostWorkoutsRequestBody.ts";
+import type { Workout } from "./Workout.ts";
 
 export type PutV1WorkoutsWorkoutidPathParams = {
-  workoutId: any
-}
+  /**
+   * @description The id of the workout
+   * @type string
+   */
+  workoutId: string;
+};
 
 export type PutV1WorkoutsWorkoutidHeaderParams = {
   /**
    * @type string, uuid
    */
-  'api-key': string
-}
+  "api-key": string;
+};
 
 /**
  * @description The workout was successfully updated
  */
-export type PutV1WorkoutsWorkoutid200 = Workout
+export type PutV1WorkoutsWorkoutid200 = Workout;
 
 /**
  * @description Invalid request body
@@ -30,17 +34,17 @@ export type PutV1WorkoutsWorkoutid400 = {
    * @description Error message
    * @type string | undefined
    */
-  error?: string
-}
+  error?: string;
+};
 
-export type PutV1WorkoutsWorkoutidMutationRequest = PostWorkoutsRequestBody
+export type PutV1WorkoutsWorkoutidMutationRequest = PostWorkoutsRequestBody;
 
-export type PutV1WorkoutsWorkoutidMutationResponse = PutV1WorkoutsWorkoutid200
+export type PutV1WorkoutsWorkoutidMutationResponse = PutV1WorkoutsWorkoutid200;
 
 export type PutV1WorkoutsWorkoutidMutation = {
-  Response: PutV1WorkoutsWorkoutid200
-  Request: PutV1WorkoutsWorkoutidMutationRequest
-  PathParams: PutV1WorkoutsWorkoutidPathParams
-  HeaderParams: PutV1WorkoutsWorkoutidHeaderParams
-  Errors: PutV1WorkoutsWorkoutid400
-}
+  Response: PutV1WorkoutsWorkoutid200;
+  Request: PutV1WorkoutsWorkoutidMutationRequest;
+  PathParams: PutV1WorkoutsWorkoutidPathParams;
+  HeaderParams: PutV1WorkoutsWorkoutidHeaderParams;
+  Errors: PutV1WorkoutsWorkoutid400;
+};

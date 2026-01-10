@@ -3,20 +3,25 @@
  * Do not edit manually.
  */
 
-import { postRoutinesRequestExerciseSchema } from './postRoutinesRequestExerciseSchema.ts'
-import { z } from 'zod'
+import { postRoutinesRequestExerciseSchema } from "./postRoutinesRequestExerciseSchema.ts";
+import { z } from "zod/v4";
 
 export const postRoutinesRequestBodySchema = z.object({
-  routine: z
-    .object({
-      title: z.string().describe('The title of the routine.').optional(),
+  routine: z.optional(
+    z.object({
+      title: z.optional(z.string().describe("The title of the routine.")),
       folder_id: z
         .number()
-        .describe('The folder id the routine should be added to. Pass null to insert the routine into default "My Routines" folder')
-        .nullable()
+        .describe(
+          'The folder id the routine should be added to. Pass null to insert the routine into default "My Routines" folder',
+        )
         .nullish(),
-      notes: z.string().describe('Additional notes for the routine.').optional(),
-      exercises: z.array(z.lazy(() => postRoutinesRequestExerciseSchema)).optional(),
-    })
-    .optional(),
-})
+      notes: z.optional(
+        z.string().describe("Additional notes for the routine."),
+      ),
+      get exercises() {
+        return z.array(postRoutinesRequestExerciseSchema).optional();
+      },
+    }),
+  ),
+});

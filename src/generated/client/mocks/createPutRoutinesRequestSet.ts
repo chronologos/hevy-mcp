@@ -3,13 +3,17 @@
  * Do not edit manually.
  */
 
-import type { PutRoutinesRequestSet } from '../types/PutRoutinesRequestSet.ts'
-import { faker } from '@faker-js/faker'
+import type { PutRoutinesRequestSet } from "../types/PutRoutinesRequestSet.ts";
+import { faker } from "@faker-js/faker";
 
-export function createPutRoutinesRequestSet(data?: Partial<PutRoutinesRequestSet>): PutRoutinesRequestSet {
+export function createPutRoutinesRequestSet(
+  data?: Partial<PutRoutinesRequestSet>,
+): PutRoutinesRequestSet {
   return {
     ...{
-      type: faker.helpers.arrayElement<NonNullable<PutRoutinesRequestSet>['type']>(['warmup', 'normal', 'failure', 'dropset']),
+      type: faker.helpers.arrayElement<
+        NonNullable<PutRoutinesRequestSet>["type"]
+      >(["warmup", "normal", "failure", "dropset"]),
       weight_kg: faker.number.float(),
       reps: faker.number.int(),
       distance_meters: faker.number.int(),
@@ -18,5 +22,5 @@ export function createPutRoutinesRequestSet(data?: Partial<PutRoutinesRequestSet
       rep_range: { start: faker.number.float(), end: faker.number.float() },
     },
     ...(data || {}),
-  }
+  };
 }

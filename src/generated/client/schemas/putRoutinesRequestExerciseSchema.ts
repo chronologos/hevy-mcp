@@ -3,13 +3,17 @@
  * Do not edit manually.
  */
 
-import { putRoutinesRequestSetSchema } from './putRoutinesRequestSetSchema.ts'
-import { z } from 'zod'
+import { putRoutinesRequestSetSchema } from "./putRoutinesRequestSetSchema.ts";
+import { z } from "zod/v4";
 
 export const putRoutinesRequestExerciseSchema = z.object({
-  exercise_template_id: z.string().describe('The ID of the exercise template.').optional(),
-  superset_id: z.number().int().describe('The ID of the superset.').nullable().nullish(),
-  rest_seconds: z.number().int().describe('The rest time in seconds.').nullable().nullish(),
-  notes: z.string().describe('Additional notes for the exercise.').nullable().nullish(),
-  sets: z.array(z.lazy(() => putRoutinesRequestSetSchema)).optional(),
-})
+  exercise_template_id: z.optional(
+    z.string().describe("The ID of the exercise template."),
+  ),
+  superset_id: z.int().describe("The ID of the superset.").nullish(),
+  rest_seconds: z.int().describe("The rest time in seconds.").nullish(),
+  notes: z.string().describe("Additional notes for the exercise.").nullish(),
+  get sets() {
+    return z.array(putRoutinesRequestSetSchema).optional();
+  },
+});

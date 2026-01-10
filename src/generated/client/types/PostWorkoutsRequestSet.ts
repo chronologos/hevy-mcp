@@ -4,61 +4,63 @@
  */
 
 export const postWorkoutsRequestSetTypeEnum = {
-  warmup: 'warmup',
-  normal: 'normal',
-  failure: 'failure',
-  dropset: 'dropset',
-} as const
+  warmup: "warmup",
+  normal: "normal",
+  failure: "failure",
+  dropset: "dropset",
+} as const;
 
-export type PostWorkoutsRequestSetTypeEnum = (typeof postWorkoutsRequestSetTypeEnum)[keyof typeof postWorkoutsRequestSetTypeEnum]
+export type PostWorkoutsRequestSetTypeEnumKey =
+  (typeof postWorkoutsRequestSetTypeEnum)[keyof typeof postWorkoutsRequestSetTypeEnum];
 
 export const postWorkoutsRequestSetRpeEnum = {
-  '6': 6,
-  '7': 7,
-  '7.5': 7.5,
-  '8': 8,
-  '8.5': 8.5,
-  '9': 9,
-  '9.5': 9.5,
-  '10': 10,
-} as const
+  "6": 6,
+  "7": 7,
+  "7.5": 7.5,
+  "8": 8,
+  "8.5": 8.5,
+  "9": 9,
+  "9.5": 9.5,
+  "10": 10,
+} as const;
 
-export type PostWorkoutsRequestSetRpeEnum = (typeof postWorkoutsRequestSetRpeEnum)[keyof typeof postWorkoutsRequestSetRpeEnum]
+export type PostWorkoutsRequestSetRpeEnumKey =
+  (typeof postWorkoutsRequestSetRpeEnum)[keyof typeof postWorkoutsRequestSetRpeEnum];
 
 export type PostWorkoutsRequestSet = {
   /**
    * @description The type of the set.
    * @type string | undefined
    */
-  type?: PostWorkoutsRequestSetTypeEnum
+  type?: PostWorkoutsRequestSetTypeEnumKey;
   /**
    * @description The weight in kilograms.
    * @type number
    */
-  weight_kg?: number | null
+  weight_kg?: number | null;
   /**
    * @description The number of repetitions.
    * @type integer
    */
-  reps?: number | null
+  reps?: number | null;
   /**
    * @description The distance in meters.
    * @type integer
    */
-  distance_meters?: number | null
+  distance_meters?: number | null;
   /**
    * @description The duration in seconds.
    * @type integer
    */
-  duration_seconds?: number | null
+  duration_seconds?: number | null;
   /**
    * @description A custom metric for the set. Currently used for steps and floors.
    * @type number
    */
-  custom_metric?: number | null
+  custom_metric?: number | null;
   /**
    * @description The Rating of Perceived Exertion (RPE).
    * @type number
    */
-  rpe?: PostWorkoutsRequestSetRpeEnum | null
-}
+  rpe?: PostWorkoutsRequestSetRpeEnumKey | null;
+};

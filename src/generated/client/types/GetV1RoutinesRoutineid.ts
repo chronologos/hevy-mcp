@@ -3,18 +3,22 @@
  * Do not edit manually.
  */
 
-import type { Routine } from './Routine.ts'
+import type { Routine } from "./Routine.ts";
 
 export type GetV1RoutinesRoutineidPathParams = {
-  routineId: any
-}
+  /**
+   * @description The id of the routine
+   * @type string
+   */
+  routineId: string;
+};
 
 export type GetV1RoutinesRoutineidHeaderParams = {
   /**
    * @type string, uuid
    */
-  'api-key': string
-}
+  "api-key": string;
+};
 
 /**
  * @description The routine with the provided id
@@ -23,8 +27,8 @@ export type GetV1RoutinesRoutineid200 = {
   /**
    * @type object | undefined
    */
-  routine?: Routine
-}
+  routine?: Routine;
+};
 
 /**
  * @description Invalid request body
@@ -34,14 +38,14 @@ export type GetV1RoutinesRoutineid400 = {
    * @description Error message
    * @type string | undefined
    */
-  error?: string
-}
+  error?: string;
+};
 
-export type GetV1RoutinesRoutineidQueryResponse = GetV1RoutinesRoutineid200
+export type GetV1RoutinesRoutineidQueryResponse = GetV1RoutinesRoutineid200;
 
 export type GetV1RoutinesRoutineidQuery = {
-  Response: GetV1RoutinesRoutineid200
-  PathParams: GetV1RoutinesRoutineidPathParams
-  HeaderParams: GetV1RoutinesRoutineidHeaderParams
-  Errors: GetV1RoutinesRoutineid400
-}
+  Response: GetV1RoutinesRoutineid200;
+  PathParams: GetV1RoutinesRoutineidPathParams;
+  HeaderParams: GetV1RoutinesRoutineidHeaderParams;
+  Errors: GetV1RoutinesRoutineid400;
+};

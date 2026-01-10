@@ -3,11 +3,13 @@
  * Do not edit manually.
  */
 
-import type { PutRoutinesRequestExercise } from '../types/PutRoutinesRequestExercise.ts'
-import { createPutRoutinesRequestSet } from './createPutRoutinesRequestSet.ts'
-import { faker } from '@faker-js/faker'
+import type { PutRoutinesRequestExercise } from "../types/PutRoutinesRequestExercise.ts";
+import { createPutRoutinesRequestSet } from "./createPutRoutinesRequestSet.ts";
+import { faker } from "@faker-js/faker";
 
-export function createPutRoutinesRequestExercise(data?: Partial<PutRoutinesRequestExercise>): PutRoutinesRequestExercise {
+export function createPutRoutinesRequestExercise(
+  data?: Partial<PutRoutinesRequestExercise>,
+): PutRoutinesRequestExercise {
   return {
     ...{
       exercise_template_id: faker.string.alpha(),
@@ -17,5 +19,5 @@ export function createPutRoutinesRequestExercise(data?: Partial<PutRoutinesReque
       sets: faker.helpers.multiple(() => createPutRoutinesRequestSet()),
     },
     ...(data || {}),
-  }
+  };
 }

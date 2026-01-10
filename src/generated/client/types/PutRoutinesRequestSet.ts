@@ -4,45 +4,46 @@
  */
 
 export const putRoutinesRequestSetTypeEnum = {
-  warmup: 'warmup',
-  normal: 'normal',
-  failure: 'failure',
-  dropset: 'dropset',
-} as const
+  warmup: "warmup",
+  normal: "normal",
+  failure: "failure",
+  dropset: "dropset",
+} as const;
 
-export type PutRoutinesRequestSetTypeEnum = (typeof putRoutinesRequestSetTypeEnum)[keyof typeof putRoutinesRequestSetTypeEnum]
+export type PutRoutinesRequestSetTypeEnumKey =
+  (typeof putRoutinesRequestSetTypeEnum)[keyof typeof putRoutinesRequestSetTypeEnum];
 
 export type PutRoutinesRequestSet = {
   /**
    * @description The type of the set.
    * @type string | undefined
    */
-  type?: PutRoutinesRequestSetTypeEnum
+  type?: PutRoutinesRequestSetTypeEnumKey;
   /**
    * @description The weight in kilograms.
    * @type number
    */
-  weight_kg?: number | null
+  weight_kg?: number | null;
   /**
    * @description The number of repetitions.
    * @type integer
    */
-  reps?: number | null
+  reps?: number | null;
   /**
    * @description The distance in meters.
    * @type integer
    */
-  distance_meters?: number | null
+  distance_meters?: number | null;
   /**
    * @description The duration in seconds.
    * @type integer
    */
-  duration_seconds?: number | null
+  duration_seconds?: number | null;
   /**
    * @description A custom metric for the set. Currently used for steps and floors.
    * @type number
    */
-  custom_metric?: number | null
+  custom_metric?: number | null;
   /**
    * @description Range of reps for the set, if applicable
    * @type object
@@ -52,11 +53,11 @@ export type PutRoutinesRequestSet = {
      * @description Starting rep count for the range
      * @type number
      */
-    start?: number | null
+    start?: number | null;
     /**
      * @description Ending rep count for the range
      * @type number
      */
-    end?: number | null
-  } | null
-}
+    end?: number | null;
+  } | null;
+};

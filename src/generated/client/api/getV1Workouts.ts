@@ -3,12 +3,21 @@
  * Do not edit manually.
  */
 
-import fetch from '@kubb/plugin-client/clients/axios'
-import type { GetV1WorkoutsQueryResponse, GetV1WorkoutsQueryParams, GetV1WorkoutsHeaderParams, GetV1Workouts400 } from '../types/GetV1Workouts.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+import fetch from "@kubb/plugin-client/clients/axios";
+import type {
+  GetV1WorkoutsQueryResponse,
+  GetV1WorkoutsQueryParams,
+  GetV1WorkoutsHeaderParams,
+  GetV1Workouts400,
+} from "../types/GetV1Workouts.ts";
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+} from "@kubb/plugin-client/clients/axios";
 
 function getGetV1WorkoutsUrl() {
-  return `/v1/workouts` as const
+  const res = { method: "GET", url: `/v1/workouts` as const };
+  return res;
 }
 
 /**
@@ -20,14 +29,18 @@ export async function getV1Workouts(
   params?: GetV1WorkoutsQueryParams,
   config: Partial<RequestConfig> & { client?: typeof fetch } = {},
 ) {
-  const { client: request = fetch, ...requestConfig } = config
+  const { client: request = fetch, ...requestConfig } = config;
 
-  const res = await request<GetV1WorkoutsQueryResponse, ResponseErrorConfig<GetV1Workouts400>, unknown>({
-    method: 'GET',
-    url: getGetV1WorkoutsUrl().toString(),
+  const res = await request<
+    GetV1WorkoutsQueryResponse,
+    ResponseErrorConfig<GetV1Workouts400>,
+    unknown
+  >({
+    method: "GET",
+    url: getGetV1WorkoutsUrl().url.toString(),
     params,
     ...requestConfig,
     headers: { ...headers, ...requestConfig.headers },
-  })
-  return res.data
+  });
+  return res.data;
 }

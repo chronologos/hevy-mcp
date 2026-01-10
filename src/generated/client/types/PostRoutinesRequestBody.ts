@@ -3,7 +3,7 @@
  * Do not edit manually.
  */
 
-import type { PostRoutinesRequestExercise } from './PostRoutinesRequestExercise.ts'
+import type { PostRoutinesRequestExercise } from "./PostRoutinesRequestExercise.ts";
 
 export type PostRoutinesRequestBody = {
   /**
@@ -14,20 +14,20 @@ export type PostRoutinesRequestBody = {
      * @description The title of the routine.
      * @type string | undefined
      */
-    title?: string
+    title?: string;
     /**
      * @description The folder id the routine should be added to. Pass null to insert the routine into default \"My Routines\" folder
      * @type number
      */
-    folder_id?: number | null
+    folder_id?: number | null;
     /**
      * @description Additional notes for the routine.
      * @type string | undefined
      */
-    notes?: string
+    notes?: string;
     /**
      * @type array | undefined
      */
-    exercises?: PostRoutinesRequestExercise[]
-  }
-}
+    exercises?: PostRoutinesRequestExercise[];
+  };
+};

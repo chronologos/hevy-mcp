@@ -3,12 +3,18 @@
  * Do not edit manually.
  */
 
-import type { DeletedWorkout } from '../types/DeletedWorkout.ts'
-import { faker } from '@faker-js/faker'
+import type { DeletedWorkout } from "../types/DeletedWorkout.ts";
+import { faker } from "@faker-js/faker";
 
-export function createDeletedWorkout(data?: Partial<DeletedWorkout>): DeletedWorkout {
+export function createDeletedWorkout(
+  data?: Partial<DeletedWorkout>,
+): DeletedWorkout {
   return {
-    ...{ type: faker.string.alpha(), id: faker.string.alpha(), deleted_at: faker.string.alpha() },
+    ...{
+      type: faker.string.alpha(),
+      id: faker.string.alpha(),
+      deleted_at: faker.string.alpha(),
+    },
     ...(data || {}),
-  }
+  };
 }

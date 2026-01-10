@@ -3,7 +3,7 @@
  * Do not edit manually.
  */
 
-import type { PaginatedWorkoutEvents } from './PaginatedWorkoutEvents.ts'
+import type { PaginatedWorkoutEvents } from "./PaginatedWorkoutEvents.ts";
 
 export type GetV1WorkoutsEventsQueryParams = {
   /**
@@ -11,42 +11,42 @@ export type GetV1WorkoutsEventsQueryParams = {
    * @default 1
    * @type integer | undefined
    */
-  page?: number
+  page?: number;
   /**
    * @description Number of items on the requested page (Max 10)
    * @default 5
    * @type integer | undefined
    */
-  pageSize?: number
+  pageSize?: number;
   /**
    * @default "1970-01-01T00:00:00Z"
    * @type string | undefined
    */
-  since?: string
-}
+  since?: string;
+};
 
 export type GetV1WorkoutsEventsHeaderParams = {
   /**
    * @type string, uuid
    */
-  'api-key': string
-}
+  "api-key": string;
+};
 
 /**
  * @description A paginated list of workout events
  */
-export type GetV1WorkoutsEvents200 = PaginatedWorkoutEvents
+export type GetV1WorkoutsEvents200 = PaginatedWorkoutEvents;
 
 /**
  * @description Internal Server Error
  */
-export type GetV1WorkoutsEvents500 = any
+export type GetV1WorkoutsEvents500 = any;
 
-export type GetV1WorkoutsEventsQueryResponse = GetV1WorkoutsEvents200
+export type GetV1WorkoutsEventsQueryResponse = GetV1WorkoutsEvents200;
 
 export type GetV1WorkoutsEventsQuery = {
-  Response: GetV1WorkoutsEvents200
-  QueryParams: GetV1WorkoutsEventsQueryParams
-  HeaderParams: GetV1WorkoutsEventsHeaderParams
-  Errors: GetV1WorkoutsEvents500
-}
+  Response: GetV1WorkoutsEvents200;
+  QueryParams: GetV1WorkoutsEventsQueryParams;
+  HeaderParams: GetV1WorkoutsEventsHeaderParams;
+  Errors: GetV1WorkoutsEvents500;
+};

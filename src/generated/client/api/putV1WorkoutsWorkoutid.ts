@@ -3,18 +3,24 @@
  * Do not edit manually.
  */
 
-import fetch from '@kubb/plugin-client/clients/axios'
+import fetch from "@kubb/plugin-client/clients/axios";
 import type {
   PutV1WorkoutsWorkoutidMutationRequest,
   PutV1WorkoutsWorkoutidMutationResponse,
   PutV1WorkoutsWorkoutidPathParams,
   PutV1WorkoutsWorkoutidHeaderParams,
   PutV1WorkoutsWorkoutid400,
-} from '../types/PutV1WorkoutsWorkoutid.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+} from "../types/PutV1WorkoutsWorkoutid.ts";
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+} from "@kubb/plugin-client/clients/axios";
 
-function getPutV1WorkoutsWorkoutidUrl(workoutId: PutV1WorkoutsWorkoutidPathParams['workoutId']) {
-  return `/v1/workouts/${workoutId}` as const
+function getPutV1WorkoutsWorkoutidUrl(
+  workoutId: PutV1WorkoutsWorkoutidPathParams["workoutId"],
+) {
+  const res = { method: "PUT", url: `/v1/workouts/${workoutId}` as const };
+  return res;
 }
 
 /**
@@ -22,20 +28,27 @@ function getPutV1WorkoutsWorkoutidUrl(workoutId: PutV1WorkoutsWorkoutidPathParam
  * {@link /v1/workouts/:workoutId}
  */
 export async function putV1WorkoutsWorkoutid(
-  workoutId: PutV1WorkoutsWorkoutidPathParams['workoutId'],
+  workoutId: PutV1WorkoutsWorkoutidPathParams["workoutId"],
   headers: PutV1WorkoutsWorkoutidHeaderParams,
   data?: PutV1WorkoutsWorkoutidMutationRequest,
-  config: Partial<RequestConfig<PutV1WorkoutsWorkoutidMutationRequest>> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig<PutV1WorkoutsWorkoutidMutationRequest>> & {
+    client?: typeof fetch;
+  } = {},
 ) {
-  const { client: request = fetch, ...requestConfig } = config
+  const { client: request = fetch, ...requestConfig } = config;
 
-  const requestData = data
-  const res = await request<PutV1WorkoutsWorkoutidMutationResponse, ResponseErrorConfig<PutV1WorkoutsWorkoutid400>, PutV1WorkoutsWorkoutidMutationRequest>({
-    method: 'PUT',
-    url: getPutV1WorkoutsWorkoutidUrl(workoutId).toString(),
+  const requestData = data;
+
+  const res = await request<
+    PutV1WorkoutsWorkoutidMutationResponse,
+    ResponseErrorConfig<PutV1WorkoutsWorkoutid400>,
+    PutV1WorkoutsWorkoutidMutationRequest
+  >({
+    method: "PUT",
+    url: getPutV1WorkoutsWorkoutidUrl(workoutId).url.toString(),
     data: requestData,
     ...requestConfig,
     headers: { ...headers, ...requestConfig.headers },
-  })
-  return res.data
+  });
+  return res.data;
 }

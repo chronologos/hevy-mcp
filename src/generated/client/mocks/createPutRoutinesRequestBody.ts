@@ -3,13 +3,23 @@
  * Do not edit manually.
  */
 
-import type { PutRoutinesRequestBody } from '../types/PutRoutinesRequestBody.ts'
-import { createPutRoutinesRequestExercise } from './createPutRoutinesRequestExercise.ts'
-import { faker } from '@faker-js/faker'
+import type { PutRoutinesRequestBody } from "../types/PutRoutinesRequestBody.ts";
+import { createPutRoutinesRequestExercise } from "./createPutRoutinesRequestExercise.ts";
+import { faker } from "@faker-js/faker";
 
-export function createPutRoutinesRequestBody(data?: Partial<PutRoutinesRequestBody>): PutRoutinesRequestBody {
+export function createPutRoutinesRequestBody(
+  data?: Partial<PutRoutinesRequestBody>,
+): PutRoutinesRequestBody {
   return {
-    ...{ routine: { title: faker.string.alpha(), notes: faker.string.alpha(), exercises: faker.helpers.multiple(() => createPutRoutinesRequestExercise()) } },
+    ...{
+      routine: {
+        title: faker.string.alpha(),
+        notes: faker.string.alpha(),
+        exercises: faker.helpers.multiple(() =>
+          createPutRoutinesRequestExercise(),
+        ),
+      },
+    },
     ...(data || {}),
-  }
+  };
 }

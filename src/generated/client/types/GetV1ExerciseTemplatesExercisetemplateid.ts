@@ -3,34 +3,39 @@
  * Do not edit manually.
  */
 
-import type { ExerciseTemplate } from './ExerciseTemplate.ts'
+import type { ExerciseTemplate } from "./ExerciseTemplate.ts";
 
 export type GetV1ExerciseTemplatesExercisetemplateidPathParams = {
-  exerciseTemplateId: any
-}
+  /**
+   * @description The id of the exercise template
+   * @type string
+   */
+  exerciseTemplateId: string;
+};
 
 export type GetV1ExerciseTemplatesExercisetemplateidHeaderParams = {
   /**
    * @type string, uuid
    */
-  'api-key': string
-}
+  "api-key": string;
+};
 
 /**
  * @description Success
  */
-export type GetV1ExerciseTemplatesExercisetemplateid200 = ExerciseTemplate
+export type GetV1ExerciseTemplatesExercisetemplateid200 = ExerciseTemplate;
 
 /**
  * @description Exercise template not found
  */
-export type GetV1ExerciseTemplatesExercisetemplateid404 = any
+export type GetV1ExerciseTemplatesExercisetemplateid404 = any;
 
-export type GetV1ExerciseTemplatesExercisetemplateidQueryResponse = GetV1ExerciseTemplatesExercisetemplateid200
+export type GetV1ExerciseTemplatesExercisetemplateidQueryResponse =
+  GetV1ExerciseTemplatesExercisetemplateid200;
 
 export type GetV1ExerciseTemplatesExercisetemplateidQuery = {
-  Response: GetV1ExerciseTemplatesExercisetemplateid200
-  PathParams: GetV1ExerciseTemplatesExercisetemplateidPathParams
-  HeaderParams: GetV1ExerciseTemplatesExercisetemplateidHeaderParams
-  Errors: GetV1ExerciseTemplatesExercisetemplateid404
-}
+  Response: GetV1ExerciseTemplatesExercisetemplateid200;
+  PathParams: GetV1ExerciseTemplatesExercisetemplateidPathParams;
+  HeaderParams: GetV1ExerciseTemplatesExercisetemplateidHeaderParams;
+  Errors: GetV1ExerciseTemplatesExercisetemplateid404;
+};

@@ -8,37 +8,42 @@ export type Workout = {
    * @description The workout ID.
    * @type string | undefined
    */
-  id?: string
+  id?: string;
   /**
    * @description The workout title.
    * @type string | undefined
    */
-  title?: string
+  title?: string;
+  /**
+   * @description The ID of the routine that this workout belongs to.
+   * @type string | undefined
+   */
+  routine_id?: string;
   /**
    * @description The workout description.
    * @type string | undefined
    */
-  description?: string
+  description?: string;
   /**
    * @description ISO 8601 timestamp of when the workout was recorded to have started.
-   * @type number | undefined
+   * @type string | undefined
    */
-  start_time?: number
+  start_time?: string;
   /**
    * @description ISO 8601 timestamp of when the workout was recorded to have ended.
-   * @type number | undefined
+   * @type string | undefined
    */
-  end_time?: number
+  end_time?: string;
   /**
    * @description ISO 8601 timestamp of when the workout was last updated.
    * @type string | undefined
    */
-  updated_at?: string
+  updated_at?: string;
   /**
    * @description ISO 8601 timestamp of when the workout was created.
    * @type string | undefined
    */
-  created_at?: string
+  created_at?: string;
   /**
    * @type array | undefined
    */
@@ -47,27 +52,27 @@ export type Workout = {
      * @description Index indicating the order of the exercise in the workout.
      * @type number | undefined
      */
-    index?: number
+    index?: number;
     /**
      * @description Title of the exercise
      * @type string | undefined
      */
-    title?: string
+    title?: string;
     /**
      * @description Notes on the exercise
      * @type string | undefined
      */
-    notes?: string
+    notes?: string;
     /**
      * @description The id of the exercise template. This can be used to fetch the exercise template.
      * @type string | undefined
      */
-    exercise_template_id?: string
+    exercise_template_id?: string;
     /**
      * @description The id of the superset that the exercise belongs to. A value of null indicates the exercise is not part of a superset.
      * @type number
      */
-    supersets_id?: number | null
+    supersets_id?: number | null;
     /**
      * @type array | undefined
      */
@@ -76,42 +81,42 @@ export type Workout = {
        * @description Index indicating the order of the set in the workout.
        * @type number | undefined
        */
-      index?: number
+      index?: number;
       /**
        * @description The type of set. This can be one of \'normal\', \'warmup\', \'dropset\', \'failure\'
        * @type string | undefined
        */
-      type?: string
+      type?: string;
       /**
        * @description Weight lifted in kilograms.
        * @type number
        */
-      weight_kg?: number | null
+      weight_kg?: number | null;
       /**
        * @description Number of reps logged for the set
        * @type number
        */
-      reps?: number | null
+      reps?: number | null;
       /**
        * @description Number of meters logged for the set
        * @type number
        */
-      distance_meters?: number | null
+      distance_meters?: number | null;
       /**
        * @description Number of seconds logged for the set
        * @type number
        */
-      duration_seconds?: number | null
+      duration_seconds?: number | null;
       /**
        * @description RPE (Relative perceived exertion) value logged for the set
        * @type number
        */
-      rpe?: number | null
+      rpe?: number | null;
       /**
        * @description Custom metric logged for the set (Currently only used to log floors or steps for stair machine exercises)
        * @type number
        */
-      custom_metric?: number | null
-    }[]
-  }[]
-}
+      custom_metric?: number | null;
+    }[];
+  }[];
+};

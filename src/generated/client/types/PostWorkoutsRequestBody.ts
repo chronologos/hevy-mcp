@@ -3,7 +3,7 @@
  * Do not edit manually.
  */
 
-import type { PostWorkoutsRequestExercise } from './PostWorkoutsRequestExercise.ts'
+import type { PostWorkoutsRequestExercise } from "./PostWorkoutsRequestExercise.ts";
 
 export type PostWorkoutsRequestBody = {
   /**
@@ -14,30 +14,30 @@ export type PostWorkoutsRequestBody = {
      * @description The title of the workout.
      * @type string | undefined
      */
-    title?: string
+    title?: string;
     /**
      * @description A description for the workout workout.
      * @type string
      */
-    description?: string | null
+    description?: string | null;
     /**
      * @description The time the workout started.
      * @type string | undefined
      */
-    start_time?: string
+    start_time?: string;
     /**
      * @description The time the workout ended.
      * @type string | undefined
      */
-    end_time?: string
+    end_time?: string;
     /**
      * @description A boolean indicating if the workout is private.
      * @type boolean | undefined
      */
-    is_private?: boolean
+    is_private?: boolean;
     /**
      * @type array | undefined
      */
-    exercises?: PostWorkoutsRequestExercise[]
-  }
-}
+    exercises?: PostWorkoutsRequestExercise[];
+  };
+};

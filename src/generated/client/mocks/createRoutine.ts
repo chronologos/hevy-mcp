@@ -3,8 +3,8 @@
  * Do not edit manually.
  */
 
-import type { Routine } from '../types/Routine.ts'
-import { faker } from '@faker-js/faker'
+import type { Routine } from "../types/Routine.ts";
+import { faker } from "@faker-js/faker";
 
 export function createRoutine(data?: Partial<Routine>): Routine {
   return {
@@ -35,5 +35,5 @@ export function createRoutine(data?: Partial<Routine>): Routine {
       })),
     },
     ...(data || {}),
-  }
+  };
 }

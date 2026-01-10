@@ -3,17 +3,18 @@
  * Do not edit manually.
  */
 
-import type { Workout } from '../types/Workout.ts'
-import { faker } from '@faker-js/faker'
+import type { Workout } from "../types/Workout.ts";
+import { faker } from "@faker-js/faker";
 
 export function createWorkout(data?: Partial<Workout>): Workout {
   return {
     ...{
       id: faker.string.alpha(),
       title: faker.string.alpha(),
+      routine_id: faker.string.alpha(),
       description: faker.string.alpha(),
-      start_time: faker.number.float(),
-      end_time: faker.number.float(),
+      start_time: faker.string.alpha(),
+      end_time: faker.string.alpha(),
       updated_at: faker.string.alpha(),
       created_at: faker.string.alpha(),
       exercises: faker.helpers.multiple(() => ({
@@ -35,5 +36,5 @@ export function createWorkout(data?: Partial<Workout>): Workout {
       })),
     },
     ...(data || {}),
-  }
+  };
 }

@@ -3,17 +3,21 @@
  * Do not edit manually.
  */
 
-import fetch from '@kubb/plugin-client/clients/axios'
+import fetch from "@kubb/plugin-client/clients/axios";
 import type {
   GetV1WorkoutsEventsQueryResponse,
   GetV1WorkoutsEventsQueryParams,
   GetV1WorkoutsEventsHeaderParams,
   GetV1WorkoutsEvents500,
-} from '../types/GetV1WorkoutsEvents.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+} from "../types/GetV1WorkoutsEvents.ts";
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+} from "@kubb/plugin-client/clients/axios";
 
 function getGetV1WorkoutsEventsUrl() {
-  return `/v1/workouts/events` as const
+  const res = { method: "GET", url: `/v1/workouts/events` as const };
+  return res;
 }
 
 /**
@@ -26,14 +30,18 @@ export async function getV1WorkoutsEvents(
   params?: GetV1WorkoutsEventsQueryParams,
   config: Partial<RequestConfig> & { client?: typeof fetch } = {},
 ) {
-  const { client: request = fetch, ...requestConfig } = config
+  const { client: request = fetch, ...requestConfig } = config;
 
-  const res = await request<GetV1WorkoutsEventsQueryResponse, ResponseErrorConfig<GetV1WorkoutsEvents500>, unknown>({
-    method: 'GET',
-    url: getGetV1WorkoutsEventsUrl().toString(),
+  const res = await request<
+    GetV1WorkoutsEventsQueryResponse,
+    ResponseErrorConfig<GetV1WorkoutsEvents500>,
+    unknown
+  >({
+    method: "GET",
+    url: getGetV1WorkoutsEventsUrl().url.toString(),
     params,
     ...requestConfig,
     headers: { ...headers, ...requestConfig.headers },
-  })
-  return res.data
+  });
+  return res.data;
 }

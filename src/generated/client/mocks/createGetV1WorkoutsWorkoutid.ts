@@ -7,38 +7,46 @@ import type {
   GetV1WorkoutsWorkoutidPathParams,
   GetV1WorkoutsWorkoutidHeaderParams,
   GetV1WorkoutsWorkoutidQueryResponse,
-} from '../types/GetV1WorkoutsWorkoutid.ts'
-import { createWorkout } from './createWorkout.ts'
-import { faker } from '@faker-js/faker'
+} from "../types/GetV1WorkoutsWorkoutid.ts";
+import { createWorkout } from "./createWorkout.ts";
+import { faker } from "@faker-js/faker";
 
-export function createGetV1WorkoutsWorkoutidPathParams(data?: Partial<GetV1WorkoutsWorkoutidPathParams>): GetV1WorkoutsWorkoutidPathParams {
+export function createGetV1WorkoutsWorkoutidPathParams(
+  data?: Partial<GetV1WorkoutsWorkoutidPathParams>,
+): GetV1WorkoutsWorkoutidPathParams {
   return {
-    ...{ workoutId: undefined },
+    ...{ workoutId: faker.string.alpha() },
     ...(data || {}),
-  }
+  };
 }
 
-export function createGetV1WorkoutsWorkoutidHeaderParams(data?: Partial<GetV1WorkoutsWorkoutidHeaderParams>): GetV1WorkoutsWorkoutidHeaderParams {
+export function createGetV1WorkoutsWorkoutidHeaderParams(
+  data?: Partial<GetV1WorkoutsWorkoutidHeaderParams>,
+): GetV1WorkoutsWorkoutidHeaderParams {
   return {
-    ...{ 'api-key': faker.string.uuid() },
+    ...{ "api-key": faker.string.uuid() },
     ...(data || {}),
-  }
+  };
 }
 
 /**
  * @description Success
  */
 export function createGetV1WorkoutsWorkoutid200() {
-  return createWorkout()
+  return createWorkout();
 }
 
 /**
  * @description Workout not found
  */
 export function createGetV1WorkoutsWorkoutid404() {
-  return undefined
+  return undefined;
 }
 
-export function createGetV1WorkoutsWorkoutidQueryResponse(data?: Partial<GetV1WorkoutsWorkoutidQueryResponse>): GetV1WorkoutsWorkoutidQueryResponse {
-  return data || faker.helpers.arrayElement<any>([createGetV1WorkoutsWorkoutid200()])
+export function createGetV1WorkoutsWorkoutidQueryResponse(
+  data?: Partial<GetV1WorkoutsWorkoutidQueryResponse>,
+): GetV1WorkoutsWorkoutidQueryResponse {
+  return (
+    data || faker.helpers.arrayElement<any>([createGetV1WorkoutsWorkoutid200()])
+  );
 }

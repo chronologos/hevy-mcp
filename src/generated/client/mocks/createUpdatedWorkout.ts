@@ -3,13 +3,15 @@
  * Do not edit manually.
  */
 
-import type { UpdatedWorkout } from '../types/UpdatedWorkout.ts'
-import { createWorkout } from './createWorkout.ts'
-import { faker } from '@faker-js/faker'
+import type { UpdatedWorkout } from "../types/UpdatedWorkout.ts";
+import { createWorkout } from "./createWorkout.ts";
+import { faker } from "@faker-js/faker";
 
-export function createUpdatedWorkout(data?: Partial<UpdatedWorkout>): UpdatedWorkout {
+export function createUpdatedWorkout(
+  data?: Partial<UpdatedWorkout>,
+): UpdatedWorkout {
   return {
     ...{ type: faker.string.alpha(), workout: createWorkout() },
     ...(data || {}),
-  }
+  };
 }

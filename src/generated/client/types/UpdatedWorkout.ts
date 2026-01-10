@@ -3,16 +3,16 @@
  * Do not edit manually.
  */
 
-import type { Workout } from './Workout.ts'
+import type { Workout } from "./Workout.ts";
 
 export type UpdatedWorkout = {
   /**
    * @description Indicates the type of the event (updated)
    * @type string
    */
-  type: string
+  type: string;
   /**
    * @type object
    */
-  workout: Workout
-}
+  workout: Workout;
+};

@@ -8,41 +8,55 @@ import type {
   GetV1RoutineFoldersHeaderParams,
   GetV1RoutineFolders200,
   GetV1RoutineFoldersQueryResponse,
-} from '../types/GetV1RoutineFolders.ts'
-import { createRoutineFolder } from './createRoutineFolder.ts'
-import { faker } from '@faker-js/faker'
+} from "../types/GetV1RoutineFolders.ts";
+import { createRoutineFolder } from "./createRoutineFolder.ts";
+import { faker } from "@faker-js/faker";
 
-export function createGetV1RoutineFoldersQueryParams(data?: Partial<GetV1RoutineFoldersQueryParams>): GetV1RoutineFoldersQueryParams {
+export function createGetV1RoutineFoldersQueryParams(
+  data?: Partial<GetV1RoutineFoldersQueryParams>,
+): GetV1RoutineFoldersQueryParams {
   return {
     ...{ page: faker.number.int(), pageSize: faker.number.int() },
     ...(data || {}),
-  }
+  };
 }
 
-export function createGetV1RoutineFoldersHeaderParams(data?: Partial<GetV1RoutineFoldersHeaderParams>): GetV1RoutineFoldersHeaderParams {
+export function createGetV1RoutineFoldersHeaderParams(
+  data?: Partial<GetV1RoutineFoldersHeaderParams>,
+): GetV1RoutineFoldersHeaderParams {
   return {
-    ...{ 'api-key': faker.string.uuid() },
+    ...{ "api-key": faker.string.uuid() },
     ...(data || {}),
-  }
+  };
 }
 
 /**
  * @description A paginated list of routine folders
  */
-export function createGetV1RoutineFolders200(data?: Partial<GetV1RoutineFolders200>): GetV1RoutineFolders200 {
+export function createGetV1RoutineFolders200(
+  data?: Partial<GetV1RoutineFolders200>,
+): GetV1RoutineFolders200 {
   return {
-    ...{ page: faker.number.int(), page_count: faker.number.int(), routine_folders: faker.helpers.multiple(() => createRoutineFolder()) },
+    ...{
+      page: faker.number.int(),
+      page_count: faker.number.int(),
+      routine_folders: faker.helpers.multiple(() => createRoutineFolder()),
+    },
     ...(data || {}),
-  }
+  };
 }
 
 /**
  * @description Invalid page size
  */
 export function createGetV1RoutineFolders400() {
-  return undefined
+  return undefined;
 }
 
-export function createGetV1RoutineFoldersQueryResponse(data?: Partial<GetV1RoutineFoldersQueryResponse>): GetV1RoutineFoldersQueryResponse {
-  return data || faker.helpers.arrayElement<any>([createGetV1RoutineFolders200()])
+export function createGetV1RoutineFoldersQueryResponse(
+  data?: Partial<GetV1RoutineFoldersQueryResponse>,
+): GetV1RoutineFoldersQueryResponse {
+  return (
+    data || faker.helpers.arrayElement<any>([createGetV1RoutineFolders200()])
+  );
 }

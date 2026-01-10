@@ -3,17 +3,23 @@
  * Do not edit manually.
  */
 
-import fetch from '@kubb/plugin-client/clients/axios'
+import fetch from "@kubb/plugin-client/clients/axios";
 import type {
   GetV1WorkoutsWorkoutidQueryResponse,
   GetV1WorkoutsWorkoutidPathParams,
   GetV1WorkoutsWorkoutidHeaderParams,
   GetV1WorkoutsWorkoutid404,
-} from '../types/GetV1WorkoutsWorkoutid.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+} from "../types/GetV1WorkoutsWorkoutid.ts";
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+} from "@kubb/plugin-client/clients/axios";
 
-function getGetV1WorkoutsWorkoutidUrl(workoutId: GetV1WorkoutsWorkoutidPathParams['workoutId']) {
-  return `/v1/workouts/${workoutId}` as const
+function getGetV1WorkoutsWorkoutidUrl(
+  workoutId: GetV1WorkoutsWorkoutidPathParams["workoutId"],
+) {
+  const res = { method: "GET", url: `/v1/workouts/${workoutId}` as const };
+  return res;
 }
 
 /**
@@ -21,17 +27,21 @@ function getGetV1WorkoutsWorkoutidUrl(workoutId: GetV1WorkoutsWorkoutidPathParam
  * {@link /v1/workouts/:workoutId}
  */
 export async function getV1WorkoutsWorkoutid(
-  workoutId: GetV1WorkoutsWorkoutidPathParams['workoutId'],
+  workoutId: GetV1WorkoutsWorkoutidPathParams["workoutId"],
   headers: GetV1WorkoutsWorkoutidHeaderParams,
   config: Partial<RequestConfig> & { client?: typeof fetch } = {},
 ) {
-  const { client: request = fetch, ...requestConfig } = config
+  const { client: request = fetch, ...requestConfig } = config;
 
-  const res = await request<GetV1WorkoutsWorkoutidQueryResponse, ResponseErrorConfig<GetV1WorkoutsWorkoutid404>, unknown>({
-    method: 'GET',
-    url: getGetV1WorkoutsWorkoutidUrl(workoutId).toString(),
+  const res = await request<
+    GetV1WorkoutsWorkoutidQueryResponse,
+    ResponseErrorConfig<GetV1WorkoutsWorkoutid404>,
+    unknown
+  >({
+    method: "GET",
+    url: getGetV1WorkoutsWorkoutidUrl(workoutId).url.toString(),
     ...requestConfig,
     headers: { ...headers, ...requestConfig.headers },
-  })
-  return res.data
+  });
+  return res.data;
 }

@@ -8,27 +8,27 @@ export type Routine = {
    * @description The routine ID.
    * @type string | undefined
    */
-  id?: string
+  id?: string;
   /**
    * @description The routine title.
    * @type string | undefined
    */
-  title?: string
+  title?: string;
   /**
    * @description The routine folder ID.
    * @type number
    */
-  folder_id?: number | null
+  folder_id?: number | null;
   /**
    * @description ISO 8601 timestamp of when the routine was last updated.
    * @type string | undefined
    */
-  updated_at?: string
+  updated_at?: string;
   /**
    * @description ISO 8601 timestamp of when the routine was created.
    * @type string | undefined
    */
-  created_at?: string
+  created_at?: string;
   /**
    * @type array | undefined
    */
@@ -37,32 +37,32 @@ export type Routine = {
      * @description Index indicating the order of the exercise in the routine.
      * @type number | undefined
      */
-    index?: number
+    index?: number;
     /**
      * @description Title of the exercise
      * @type string | undefined
      */
-    title?: string
+    title?: string;
     /**
      * @description The rest time in seconds between sets of the exercise
      * @type string | undefined
      */
-    rest_seconds?: string
+    rest_seconds?: string;
     /**
      * @description Routine notes on the exercise
      * @type string | undefined
      */
-    notes?: string
+    notes?: string;
     /**
      * @description The id of the exercise template. This can be used to fetch the exercise template.
      * @type string | undefined
      */
-    exercise_template_id?: string
+    exercise_template_id?: string;
     /**
      * @description The id of the superset that the exercise belongs to. A value of null indicates the exercise is not part of a superset.
      * @type number
      */
-    supersets_id?: number | null
+    supersets_id?: number | null;
     /**
      * @type array | undefined
      */
@@ -71,22 +71,22 @@ export type Routine = {
        * @description Index indicating the order of the set in the routine.
        * @type number | undefined
        */
-      index?: number
+      index?: number;
       /**
        * @description The type of set. This can be one of \'normal\', \'warmup\', \'dropset\', \'failure\'
        * @type string | undefined
        */
-      type?: string
+      type?: string;
       /**
        * @description Weight lifted in kilograms.
        * @type number
        */
-      weight_kg?: number | null
+      weight_kg?: number | null;
       /**
        * @description Number of reps logged for the set
        * @type number
        */
-      reps?: number | null
+      reps?: number | null;
       /**
        * @description Range of reps for the set, if applicable
        * @type object
@@ -96,33 +96,33 @@ export type Routine = {
          * @description Starting rep count for the range
          * @type number
          */
-        start?: number | null
+        start?: number | null;
         /**
          * @description Ending rep count for the range
          * @type number
          */
-        end?: number | null
-      } | null
+        end?: number | null;
+      } | null;
       /**
        * @description Number of meters logged for the set
        * @type number
        */
-      distance_meters?: number | null
+      distance_meters?: number | null;
       /**
        * @description Number of seconds logged for the set
        * @type number
        */
-      duration_seconds?: number | null
+      duration_seconds?: number | null;
       /**
        * @description RPE (Relative perceived exertion) value logged for the set
        * @type number
        */
-      rpe?: number | null
+      rpe?: number | null;
       /**
        * @description Custom metric logged for the set (Currently only used to log floors or steps for stair machine exercises)
        * @type number
        */
-      custom_metric?: number | null
-    }[]
-  }[]
-}
+      custom_metric?: number | null;
+    }[];
+  }[];
+};

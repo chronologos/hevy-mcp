@@ -8,25 +8,25 @@ export type RoutineFolder = {
    * @description The routine folder ID.
    * @type number | undefined
    */
-  id?: number
+  id?: number;
   /**
    * @description The routine folder index. Describes the order of the folder in the list.
    * @type number | undefined
    */
-  index?: number
+  index?: number;
   /**
    * @description The routine folder title.
    * @type string | undefined
    */
-  title?: string
+  title?: string;
   /**
    * @description ISO 8601 timestamp of when the folder was last updated.
    * @type string | undefined
    */
-  updated_at?: string
+  updated_at?: string;
   /**
    * @description ISO 8601 timestamp of when the folder was created.
    * @type string | undefined
    */
-  created_at?: string
-}
+  created_at?: string;
+};

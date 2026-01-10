@@ -1,3 +1,193 @@
+# [1.19.0](https://github.com/chrisdoc/hevy-mcp/compare/v1.18.11...v1.19.0) (2026-01-08)
+
+
+### Features
+
+* **client:** export HevyApiClient type for external type annotations ([f3530d3](https://github.com/chrisdoc/hevy-mcp/commit/f3530d31d09c8a1cc4b27b71158afcf865eb5604))
+
+## [1.18.11](https://github.com/chrisdoc/hevy-mcp/compare/v1.18.10...v1.18.11) (2026-01-08)
+
+
+### Bug Fixes
+
+* **workouts:** omit routine_id from create/update ([#229](https://github.com/chrisdoc/hevy-mcp/issues/229)) ([bca641a](https://github.com/chrisdoc/hevy-mcp/commit/bca641a2efb6008389630501b2a6c926ca7b76c6))
+
+## [1.18.10](https://github.com/chrisdoc/hevy-mcp/compare/v1.18.9...v1.18.10) (2026-01-08)
+
+
+### Bug Fixes
+
+* extract axios response data for better error messages ([#233](https://github.com/chrisdoc/hevy-mcp/issues/233)) ([6ba1dbc](https://github.com/chrisdoc/hevy-mcp/commit/6ba1dbcf5d24b8a5b653a852e5b23b541a2b8a65))
+
+## [1.18.9](https://github.com/chrisdoc/hevy-mcp/compare/v1.18.8...v1.18.9) (2026-01-08)
+
+## [1.18.8](https://github.com/chrisdoc/hevy-mcp/compare/v1.18.7...v1.18.8) (2026-01-07)
+
+## [1.18.7](https://github.com/chrisdoc/hevy-mcp/compare/v1.18.6...v1.18.7) (2026-01-05)
+
+## [1.18.6](https://github.com/chrisdoc/hevy-mcp/compare/v1.18.5...v1.18.6) (2026-01-05)
+
+## [1.18.5](https://github.com/chrisdoc/hevy-mcp/compare/v1.18.4...v1.18.5) (2025-12-29)
+
+## [1.18.4](https://github.com/chrisdoc/hevy-mcp/compare/v1.18.3...v1.18.4) (2025-12-29)
+
+## [1.18.3](https://github.com/chrisdoc/hevy-mcp/compare/v1.18.2...v1.18.3) (2025-12-28)
+
+## [1.18.2](https://github.com/chrisdoc/hevy-mcp/compare/v1.18.1...v1.18.2) (2025-12-25)
+
+## [1.18.1](https://github.com/chrisdoc/hevy-mcp/compare/v1.18.0...v1.18.1) (2025-12-24)
+
+# [1.18.0](https://github.com/chrisdoc/hevy-mcp/compare/v1.17.3...v1.18.0) (2025-12-23)
+
+
+### Features
+
+* integrate Sentry Rollup plugin for source map uploads ([#215](https://github.com/chrisdoc/hevy-mcp/issues/215)) ([c1195c1](https://github.com/chrisdoc/hevy-mcp/commit/c1195c11288698df2d9e190bd92c5f0e014179d8))
+
+
+### BREAKING CHANGES
+
+* **HTTP/SSE transport removed**: hevy-mcp now runs exclusively over stdio.
+
+  For migration steps (including Cursor config examples), see:
+  https://github.com/chrisdoc/hevy-mcp#migration-from-httpsse-transport
+
+## [1.17.3](https://github.com/chrisdoc/hevy-mcp/compare/v1.17.2...v1.17.3) (2025-12-23)
+
+## [1.17.2](https://github.com/chrisdoc/hevy-mcp/compare/v1.17.1...v1.17.2) (2025-12-23)
+
+## [1.17.1](https://github.com/chrisdoc/hevy-mcp/compare/v1.17.0...v1.17.1) (2025-12-22)
+
+# [1.17.0](https://github.com/chrisdoc/hevy-mcp/compare/v1.16.0...v1.17.0) (2025-12-20)
+
+
+### Features
+
+* **sentry:** add release tracking ([#204](https://github.com/chrisdoc/hevy-mcp/issues/204)) ([123b17c](https://github.com/chrisdoc/hevy-mcp/commit/123b17c11cb65bfc11844df822d5c7d56c05873e))
+
+# [1.16.0](https://github.com/chrisdoc/hevy-mcp/compare/v1.15.0...v1.16.0) (2025-12-19)
+
+
+### Features
+
+* **mcp:** add new tools for exercise history and template creation ([7b5e71d](https://github.com/chrisdoc/hevy-mcp/commit/7b5e71df9361e4e7a0ade11f4f01a6ba2291c78a))
+
+# [1.15.0](https://github.com/chrisdoc/hevy-mcp/compare/v1.14.4...v1.15.0) (2025-12-19)
+
+
+### Features
+
+* **api:** add support for rep ranges ([00c9e6b](https://github.com/chrisdoc/hevy-mcp/commit/00c9e6b83b81a8df464075b3f98c7e76f37f1c86))
+
+## [1.14.4](https://github.com/chrisdoc/hevy-mcp/compare/v1.14.3...v1.14.4) (2025-12-16)
+
+## [1.14.3](https://github.com/chrisdoc/hevy-mcp/compare/v1.14.2...v1.14.3) (2025-12-15)
+
+## [1.14.2](https://github.com/chrisdoc/hevy-mcp/compare/v1.14.1...v1.14.2) (2025-12-15)
+
+## [1.14.1](https://github.com/chrisdoc/hevy-mcp/compare/v1.14.0...v1.14.1) (2025-12-15)
+
+# [1.14.0](https://github.com/chrisdoc/hevy-mcp/compare/v1.13.2...v1.14.0) (2025-12-10)
+
+
+### Features
+
+* integrate Sentry monitoring ([#196](https://github.com/chrisdoc/hevy-mcp/issues/196)) ([4ea9b31](https://github.com/chrisdoc/hevy-mcp/commit/4ea9b31b34225544eaefb5622fb18bdb0b944970))
+
+## [1.13.2](https://github.com/chrisdoc/hevy-mcp/compare/v1.13.1...v1.13.2) (2025-12-10)
+
+
+### Bug Fixes
+
+* align routine and workout weight fields ([#190](https://github.com/chrisdoc/hevy-mcp/issues/190)) ([14d10d1](https://github.com/chrisdoc/hevy-mcp/commit/14d10d1a074e1a52830d69e42734c4f5a3eb4dfd))
+
+## [1.13.1](https://github.com/chrisdoc/hevy-mcp/compare/v1.13.0...v1.13.1) (2025-12-10)
+
+# [1.13.0](https://github.com/chrisdoc/hevy-mcp/compare/v1.12.24...v1.13.0) (2025-12-10)
+
+
+### Features
+
+* improve type safety with Zod schema inference ([f78f35b](https://github.com/chrisdoc/hevy-mcp/commit/f78f35bfcb500b07c3d32365a537f680482d98c3))
+
+## [1.12.24](https://github.com/chrisdoc/hevy-mcp/compare/v1.12.23...v1.12.24) (2025-12-09)
+
+## [1.12.23](https://github.com/chrisdoc/hevy-mcp/compare/v1.12.22...v1.12.23) (2025-12-09)
+
+
+### Bug Fixes
+
+* **nightly:** revert to global install - npx PATH issues are unfixable ([de37575](https://github.com/chrisdoc/hevy-mcp/commit/de37575004e866816b2fc2860f9513f7e36628e6))
+
+## [1.12.22](https://github.com/chrisdoc/hevy-mcp/compare/v1.12.21...v1.12.22) (2025-12-09)
+
+## [1.12.21](https://github.com/chrisdoc/hevy-mcp/compare/v1.12.20...v1.12.21) (2025-12-09)
+
+## [1.12.20](https://github.com/chrisdoc/hevy-mcp/compare/v1.12.19...v1.12.20) (2025-12-09)
+
+
+### Bug Fixes
+
+* **nightly:** use global install - npx has issues in CI ([f6a721f](https://github.com/chrisdoc/hevy-mcp/commit/f6a721f4666b76c86cef9bda6e4a9158b32fee2d))
+
+## [1.12.19](https://github.com/chrisdoc/hevy-mcp/compare/v1.12.18...v1.12.19) (2025-12-09)
+
+## [1.12.18](https://github.com/chrisdoc/hevy-mcp/compare/v1.12.17...v1.12.18) (2025-12-09)
+
+
+### Bug Fixes
+
+* **nightly:** install hevy-mcp globally before running test ([08ff5db](https://github.com/chrisdoc/hevy-mcp/commit/08ff5dba63fe08e2c8fee1e4d041634f628b7498))
+
+## [1.12.17](https://github.com/chrisdoc/hevy-mcp/compare/v1.12.16...v1.12.17) (2025-12-09)
+
+
+### Bug Fixes
+
+* add trailing newline to .npmrc for Smithery compatibility ([ee50888](https://github.com/chrisdoc/hevy-mcp/commit/ee508888d1f8b332a47d6810fcb1b31d12cbaf49))
+
+## [1.12.16](https://github.com/chrisdoc/hevy-mcp/compare/v1.12.15...v1.12.16) (2025-12-08)
+
+## [1.12.15](https://github.com/chrisdoc/hevy-mcp/compare/v1.12.14...v1.12.15) (2025-12-08)
+
+## [1.12.14](https://github.com/chrisdoc/hevy-mcp/compare/v1.12.13...v1.12.14) (2025-12-08)
+
+## [1.12.13](https://github.com/chrisdoc/hevy-mcp/compare/v1.12.12...v1.12.13) (2025-12-05)
+
+
+### Bug Fixes
+
+* make hevy-mcp CLI start stdio server again ([#184](https://github.com/chrisdoc/hevy-mcp/issues/184)) ([3fd898a](https://github.com/chrisdoc/hevy-mcp/commit/3fd898a6d02ce03699df7a9097a8c670a259370f))
+
+## [1.12.12](https://github.com/chrisdoc/hevy-mcp/compare/v1.12.11...v1.12.12) (2025-12-02)
+
+## [1.12.11](https://github.com/chrisdoc/hevy-mcp/compare/v1.12.10...v1.12.11) (2025-12-01)
+
+## [1.12.10](https://github.com/chrisdoc/hevy-mcp/compare/v1.12.9...v1.12.10) (2025-12-01)
+
+## [1.12.9](https://github.com/chrisdoc/hevy-mcp/compare/v1.12.8...v1.12.9) (2025-11-29)
+
+## [1.12.8](https://github.com/chrisdoc/hevy-mcp/compare/v1.12.7...v1.12.8) (2025-11-29)
+
+
+### Bug Fixes
+
+* remove stdout pollution in stdio mode ([#174](https://github.com/chrisdoc/hevy-mcp/issues/174)) ([0ad6a1b](https://github.com/chrisdoc/hevy-mcp/commit/0ad6a1bd2024b1f6223bd5d1dba522d239effa29))
+
+## [1.12.7](https://github.com/chrisdoc/hevy-mcp/compare/v1.12.6...v1.12.7) (2025-11-29)
+
+## [1.12.6](https://github.com/chrisdoc/hevy-mcp/compare/v1.12.5...v1.12.6) (2025-11-29)
+
+## [1.12.5](https://github.com/chrisdoc/hevy-mcp/compare/v1.12.4...v1.12.5) (2025-11-24)
+
+## [1.12.4](https://github.com/chrisdoc/hevy-mcp/compare/v1.12.3...v1.12.4) (2025-11-24)
+
+## [1.12.3](https://github.com/chrisdoc/hevy-mcp/compare/v1.12.2...v1.12.3) (2025-11-24)
+
+## [1.11.10](https://github.com/chrisdoc/hevy-mcp/compare/v1.11.9...v1.11.10) (2025-11-18)
+
+## [1.10.16](https://github.com/chrisdoc/hevy-mcp/compare/v1.10.15...v1.10.16) (2025-11-16)
+
 ## [1.10.15](https://github.com/chrisdoc/hevy-mcp/compare/v1.10.14...v1.10.15) (2025-11-10)
 
 ## [1.10.14](https://github.com/chrisdoc/hevy-mcp/compare/v1.10.13...v1.10.14) (2025-11-10)

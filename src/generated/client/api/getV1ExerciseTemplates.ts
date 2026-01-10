@@ -3,17 +3,21 @@
  * Do not edit manually.
  */
 
-import fetch from '@kubb/plugin-client/clients/axios'
+import fetch from "@kubb/plugin-client/clients/axios";
 import type {
   GetV1ExerciseTemplatesQueryResponse,
   GetV1ExerciseTemplatesQueryParams,
   GetV1ExerciseTemplatesHeaderParams,
   GetV1ExerciseTemplates400,
-} from '../types/GetV1ExerciseTemplates.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+} from "../types/GetV1ExerciseTemplates.ts";
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+} from "@kubb/plugin-client/clients/axios";
 
 function getGetV1ExerciseTemplatesUrl() {
-  return `/v1/exercise_templates` as const
+  const res = { method: "GET", url: `/v1/exercise_templates` as const };
+  return res;
 }
 
 /**
@@ -25,14 +29,18 @@ export async function getV1ExerciseTemplates(
   params?: GetV1ExerciseTemplatesQueryParams,
   config: Partial<RequestConfig> & { client?: typeof fetch } = {},
 ) {
-  const { client: request = fetch, ...requestConfig } = config
+  const { client: request = fetch, ...requestConfig } = config;
 
-  const res = await request<GetV1ExerciseTemplatesQueryResponse, ResponseErrorConfig<GetV1ExerciseTemplates400>, unknown>({
-    method: 'GET',
-    url: getGetV1ExerciseTemplatesUrl().toString(),
+  const res = await request<
+    GetV1ExerciseTemplatesQueryResponse,
+    ResponseErrorConfig<GetV1ExerciseTemplates400>,
+    unknown
+  >({
+    method: "GET",
+    url: getGetV1ExerciseTemplatesUrl().url.toString(),
     params,
     ...requestConfig,
     headers: { ...headers, ...requestConfig.headers },
-  })
-  return res.data
+  });
+  return res.data;
 }

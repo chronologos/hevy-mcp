@@ -7,8 +7,8 @@ export type GetV1WorkoutsCountHeaderParams = {
   /**
    * @type string, uuid
    */
-  'api-key': string
-}
+  "api-key": string;
+};
 
 /**
  * @description The total count of workouts
@@ -19,13 +19,13 @@ export type GetV1WorkoutsCount200 = {
    * @default 42
    * @type integer | undefined
    */
-  workout_count?: number
-}
+  workout_count?: number;
+};
 
-export type GetV1WorkoutsCountQueryResponse = GetV1WorkoutsCount200
+export type GetV1WorkoutsCountQueryResponse = GetV1WorkoutsCount200;
 
 export type GetV1WorkoutsCountQuery = {
-  Response: GetV1WorkoutsCount200
-  HeaderParams: GetV1WorkoutsCountHeaderParams
-  Errors: any
-}
+  Response: GetV1WorkoutsCount200;
+  HeaderParams: GetV1WorkoutsCountHeaderParams;
+  Errors: any;
+};

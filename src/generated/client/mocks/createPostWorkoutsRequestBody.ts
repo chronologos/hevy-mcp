@@ -3,11 +3,13 @@
  * Do not edit manually.
  */
 
-import type { PostWorkoutsRequestBody } from '../types/PostWorkoutsRequestBody.ts'
-import { createPostWorkoutsRequestExercise } from './createPostWorkoutsRequestExercise.ts'
-import { faker } from '@faker-js/faker'
+import type { PostWorkoutsRequestBody } from "../types/PostWorkoutsRequestBody.ts";
+import { createPostWorkoutsRequestExercise } from "./createPostWorkoutsRequestExercise.ts";
+import { faker } from "@faker-js/faker";
 
-export function createPostWorkoutsRequestBody(data?: Partial<PostWorkoutsRequestBody>): PostWorkoutsRequestBody {
+export function createPostWorkoutsRequestBody(
+  data?: Partial<PostWorkoutsRequestBody>,
+): PostWorkoutsRequestBody {
   return {
     ...{
       workout: {
@@ -16,9 +18,11 @@ export function createPostWorkoutsRequestBody(data?: Partial<PostWorkoutsRequest
         start_time: faker.string.alpha(),
         end_time: faker.string.alpha(),
         is_private: faker.datatype.boolean(),
-        exercises: faker.helpers.multiple(() => createPostWorkoutsRequestExercise()),
+        exercises: faker.helpers.multiple(() =>
+          createPostWorkoutsRequestExercise(),
+        ),
       },
     },
     ...(data || {}),
-  }
+  };
 }

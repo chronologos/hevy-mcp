@@ -3,12 +3,21 @@
  * Do not edit manually.
  */
 
-import fetch from '@kubb/plugin-client/clients/axios'
-import type { GetV1RoutinesQueryResponse, GetV1RoutinesQueryParams, GetV1RoutinesHeaderParams, GetV1Routines400 } from '../types/GetV1Routines.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+import fetch from "@kubb/plugin-client/clients/axios";
+import type {
+  GetV1RoutinesQueryResponse,
+  GetV1RoutinesQueryParams,
+  GetV1RoutinesHeaderParams,
+  GetV1Routines400,
+} from "../types/GetV1Routines.ts";
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+} from "@kubb/plugin-client/clients/axios";
 
 function getGetV1RoutinesUrl() {
-  return `/v1/routines` as const
+  const res = { method: "GET", url: `/v1/routines` as const };
+  return res;
 }
 
 /**
@@ -20,14 +29,18 @@ export async function getV1Routines(
   params?: GetV1RoutinesQueryParams,
   config: Partial<RequestConfig> & { client?: typeof fetch } = {},
 ) {
-  const { client: request = fetch, ...requestConfig } = config
+  const { client: request = fetch, ...requestConfig } = config;
 
-  const res = await request<GetV1RoutinesQueryResponse, ResponseErrorConfig<GetV1Routines400>, unknown>({
-    method: 'GET',
-    url: getGetV1RoutinesUrl().toString(),
+  const res = await request<
+    GetV1RoutinesQueryResponse,
+    ResponseErrorConfig<GetV1Routines400>,
+    unknown
+  >({
+    method: "GET",
+    url: getGetV1RoutinesUrl().url.toString(),
     params,
     ...requestConfig,
     headers: { ...headers, ...requestConfig.headers },
-  })
-  return res.data
+  });
+  return res.data;
 }

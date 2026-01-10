@@ -3,12 +3,14 @@
  * Do not edit manually.
  */
 
-import type { PostRoutineFolderRequestBody } from '../types/PostRoutineFolderRequestBody.ts'
-import { faker } from '@faker-js/faker'
+import type { PostRoutineFolderRequestBody } from "../types/PostRoutineFolderRequestBody.ts";
+import { faker } from "@faker-js/faker";
 
-export function createPostRoutineFolderRequestBody(data?: Partial<PostRoutineFolderRequestBody>): PostRoutineFolderRequestBody {
+export function createPostRoutineFolderRequestBody(
+  data?: Partial<PostRoutineFolderRequestBody>,
+): PostRoutineFolderRequestBody {
   return {
     ...{ routine_folder: { title: faker.string.alpha() } },
     ...(data || {}),
-  }
+  };
 }

@@ -12,6 +12,6 @@ export type PostRoutineFolderRequestBody = {
      * @description The title of the routine folder.
      * @type string | undefined
      */
-    title?: string
-  }
-}
+    title?: string;
+  };
+};

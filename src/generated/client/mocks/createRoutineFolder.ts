@@ -3,10 +3,12 @@
  * Do not edit manually.
  */
 
-import type { RoutineFolder } from '../types/RoutineFolder.ts'
-import { faker } from '@faker-js/faker'
+import type { RoutineFolder } from "../types/RoutineFolder.ts";
+import { faker } from "@faker-js/faker";
 
-export function createRoutineFolder(data?: Partial<RoutineFolder>): RoutineFolder {
+export function createRoutineFolder(
+  data?: Partial<RoutineFolder>,
+): RoutineFolder {
   return {
     ...{
       id: faker.number.float(),
@@ -16,5 +18,5 @@ export function createRoutineFolder(data?: Partial<RoutineFolder>): RoutineFolde
       created_at: faker.string.alpha(),
     },
     ...(data || {}),
-  }
+  };
 }

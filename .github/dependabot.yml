@@ -25,6 +25,9 @@ updates:
       biome-dependencies:
         patterns:
           - "@biomejs/*"
+      zod-dependencies:
+        patterns:
+          - "zod"
       # fallback groups for any remaining prod/dev dependencies
       production-dependencies:
         dependency-type: "production"
@@ -34,5 +37,19 @@ updates:
       interval: "weekly"
   - package-ecosystem: "github-actions" # See documentation for possible values
     directory: "/" # Location of package manifests
+    groups:
+      github-core-actions:
+        patterns:
+          - "actions/*"
+      pnpm-tooling-actions:
+        patterns:
+          - "pnpm/*"
+      observability-actions:
+        patterns:
+          - "codecov/*"
+          - "corentinmusard/*"
+      workflow-automation-actions:
+        patterns:
+          - "linear-b/*"
     schedule:
       interval: "weekly"

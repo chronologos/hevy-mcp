@@ -3,12 +3,14 @@
  * Do not edit manually.
  */
 
-import { z } from 'zod'
+import { z } from "zod/v4";
 
 export const postRoutineFolderRequestBodySchema = z.object({
-  routine_folder: z
-    .object({
-      title: z.string().describe('The title of the routine folder.').optional(),
-    })
-    .optional(),
-})
+  routine_folder: z.optional(
+    z.object({
+      title: z.optional(
+        z.string().describe("The title of the routine folder."),
+      ),
+    }),
+  ),
+});

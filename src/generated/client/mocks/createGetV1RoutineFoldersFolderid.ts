@@ -7,42 +7,47 @@ import type {
   GetV1RoutineFoldersFolderidPathParams,
   GetV1RoutineFoldersFolderidHeaderParams,
   GetV1RoutineFoldersFolderidQueryResponse,
-} from '../types/GetV1RoutineFoldersFolderid.ts'
-import { createRoutineFolder } from './createRoutineFolder.ts'
-import { faker } from '@faker-js/faker'
+} from "../types/GetV1RoutineFoldersFolderid.ts";
+import { createRoutineFolder } from "./createRoutineFolder.ts";
+import { faker } from "@faker-js/faker";
 
-export function createGetV1RoutineFoldersFolderidPathParams(data?: Partial<GetV1RoutineFoldersFolderidPathParams>): GetV1RoutineFoldersFolderidPathParams {
+export function createGetV1RoutineFoldersFolderidPathParams(
+  data?: Partial<GetV1RoutineFoldersFolderidPathParams>,
+): GetV1RoutineFoldersFolderidPathParams {
   return {
-    ...{ folderId: undefined },
+    ...{ folderId: faker.string.alpha() },
     ...(data || {}),
-  }
+  };
 }
 
 export function createGetV1RoutineFoldersFolderidHeaderParams(
   data?: Partial<GetV1RoutineFoldersFolderidHeaderParams>,
 ): GetV1RoutineFoldersFolderidHeaderParams {
   return {
-    ...{ 'api-key': faker.string.uuid() },
+    ...{ "api-key": faker.string.uuid() },
     ...(data || {}),
-  }
+  };
 }
 
 /**
  * @description Success
  */
 export function createGetV1RoutineFoldersFolderid200() {
-  return createRoutineFolder()
+  return createRoutineFolder();
 }
 
 /**
  * @description Routine folder not found
  */
 export function createGetV1RoutineFoldersFolderid404() {
-  return undefined
+  return undefined;
 }
 
 export function createGetV1RoutineFoldersFolderidQueryResponse(
   data?: Partial<GetV1RoutineFoldersFolderidQueryResponse>,
 ): GetV1RoutineFoldersFolderidQueryResponse {
-  return data || faker.helpers.arrayElement<any>([createGetV1RoutineFoldersFolderid200()])
+  return (
+    data ||
+    faker.helpers.arrayElement<any>([createGetV1RoutineFoldersFolderid200()])
+  );
 }

@@ -3,18 +3,22 @@
  * Do not edit manually.
  */
 
-import fetch from '@kubb/plugin-client/clients/axios'
+import fetch from "@kubb/plugin-client/clients/axios";
 import type {
   PostV1RoutinesMutationRequest,
   PostV1RoutinesMutationResponse,
   PostV1RoutinesHeaderParams,
   PostV1Routines400,
   PostV1Routines403,
-} from '../types/PostV1Routines.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+} from "../types/PostV1Routines.ts";
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+} from "@kubb/plugin-client/clients/axios";
 
 function getPostV1RoutinesUrl() {
-  return `/v1/routines` as const
+  const res = { method: "POST", url: `/v1/routines` as const };
+  return res;
 }
 
 /**
@@ -24,17 +28,24 @@ function getPostV1RoutinesUrl() {
 export async function postV1Routines(
   headers: PostV1RoutinesHeaderParams,
   data?: PostV1RoutinesMutationRequest,
-  config: Partial<RequestConfig<PostV1RoutinesMutationRequest>> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig<PostV1RoutinesMutationRequest>> & {
+    client?: typeof fetch;
+  } = {},
 ) {
-  const { client: request = fetch, ...requestConfig } = config
+  const { client: request = fetch, ...requestConfig } = config;
 
-  const requestData = data
-  const res = await request<PostV1RoutinesMutationResponse, ResponseErrorConfig<PostV1Routines400 | PostV1Routines403>, PostV1RoutinesMutationRequest>({
-    method: 'POST',
-    url: getPostV1RoutinesUrl().toString(),
+  const requestData = data;
+
+  const res = await request<
+    PostV1RoutinesMutationResponse,
+    ResponseErrorConfig<PostV1Routines400 | PostV1Routines403>,
+    PostV1RoutinesMutationRequest
+  >({
+    method: "POST",
+    url: getPostV1RoutinesUrl().url.toString(),
     data: requestData,
     ...requestConfig,
     headers: { ...headers, ...requestConfig.headers },
-  })
-  return res.data
+  });
+  return res.data;
 }

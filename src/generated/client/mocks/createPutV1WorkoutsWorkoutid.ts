@@ -8,46 +8,56 @@ import type {
   PutV1WorkoutsWorkoutidHeaderParams,
   PutV1WorkoutsWorkoutid400,
   PutV1WorkoutsWorkoutidMutationResponse,
-} from '../types/PutV1WorkoutsWorkoutid.ts'
-import { createPostWorkoutsRequestBody } from './createPostWorkoutsRequestBody.ts'
-import { createWorkout } from './createWorkout.ts'
-import { faker } from '@faker-js/faker'
+} from "../types/PutV1WorkoutsWorkoutid.ts";
+import { createPostWorkoutsRequestBody } from "./createPostWorkoutsRequestBody.ts";
+import { createWorkout } from "./createWorkout.ts";
+import { faker } from "@faker-js/faker";
 
-export function createPutV1WorkoutsWorkoutidPathParams(data?: Partial<PutV1WorkoutsWorkoutidPathParams>): PutV1WorkoutsWorkoutidPathParams {
+export function createPutV1WorkoutsWorkoutidPathParams(
+  data?: Partial<PutV1WorkoutsWorkoutidPathParams>,
+): PutV1WorkoutsWorkoutidPathParams {
   return {
-    ...{ workoutId: undefined },
+    ...{ workoutId: faker.string.alpha() },
     ...(data || {}),
-  }
+  };
 }
 
-export function createPutV1WorkoutsWorkoutidHeaderParams(data?: Partial<PutV1WorkoutsWorkoutidHeaderParams>): PutV1WorkoutsWorkoutidHeaderParams {
+export function createPutV1WorkoutsWorkoutidHeaderParams(
+  data?: Partial<PutV1WorkoutsWorkoutidHeaderParams>,
+): PutV1WorkoutsWorkoutidHeaderParams {
   return {
-    ...{ 'api-key': faker.string.uuid() },
+    ...{ "api-key": faker.string.uuid() },
     ...(data || {}),
-  }
+  };
 }
 
 /**
  * @description The workout was successfully updated
  */
 export function createPutV1WorkoutsWorkoutid200() {
-  return createWorkout()
+  return createWorkout();
 }
 
 /**
  * @description Invalid request body
  */
-export function createPutV1WorkoutsWorkoutid400(data?: Partial<PutV1WorkoutsWorkoutid400>): PutV1WorkoutsWorkoutid400 {
+export function createPutV1WorkoutsWorkoutid400(
+  data?: Partial<PutV1WorkoutsWorkoutid400>,
+): PutV1WorkoutsWorkoutid400 {
   return {
     ...{ error: faker.string.alpha() },
     ...(data || {}),
-  }
+  };
 }
 
 export function createPutV1WorkoutsWorkoutidMutationRequest() {
-  return createPostWorkoutsRequestBody()
+  return createPostWorkoutsRequestBody();
 }
 
-export function createPutV1WorkoutsWorkoutidMutationResponse(data?: Partial<PutV1WorkoutsWorkoutidMutationResponse>): PutV1WorkoutsWorkoutidMutationResponse {
-  return data || faker.helpers.arrayElement<any>([createPutV1WorkoutsWorkoutid200()])
+export function createPutV1WorkoutsWorkoutidMutationResponse(
+  data?: Partial<PutV1WorkoutsWorkoutidMutationResponse>,
+): PutV1WorkoutsWorkoutidMutationResponse {
+  return (
+    data || faker.helpers.arrayElement<any>([createPutV1WorkoutsWorkoutid200()])
+  );
 }

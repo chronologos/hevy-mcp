@@ -3,30 +3,42 @@
  * Do not edit manually.
  */
 
-import { workoutSchema } from './workoutSchema.ts'
-import { z } from 'zod'
+import { workoutSchema } from "./workoutSchema.ts";
+import { z } from "zod/v4";
 
 export const getV1WorkoutsQueryParamsSchema = z.object({
-  page: z.coerce.number().int().default(1).describe('Page number (Must be 1 or greater)'),
-  pageSize: z.coerce.number().int().default(5).describe('Number of items on the requested page (Max 10)'),
-})
+  page: z.coerce
+    .number()
+    .int()
+    .default(1)
+    .describe("Page number (Must be 1 or greater)"),
+  pageSize: z.coerce
+    .number()
+    .int()
+    .default(5)
+    .describe("Number of items on the requested page (Max 10)"),
+});
 
 export const getV1WorkoutsHeaderParamsSchema = z.object({
-  'api-key': z.string().uuid(),
-})
+  "api-key": z.uuid(),
+});
 
 /**
  * @description A paginated list of workouts
  */
 export const getV1Workouts200Schema = z.object({
-  page: z.number().int().describe('Current page number').optional(),
-  page_count: z.number().int().describe('Total number of pages').optional(),
-  workouts: z.array(z.lazy(() => workoutSchema)).optional(),
-})
+  page: z.optional(z.int().describe("Current page number")),
+  page_count: z.optional(z.int().describe("Total number of pages")),
+  get workouts() {
+    return z.array(workoutSchema).optional();
+  },
+});
 
 /**
  * @description Invalid page size
  */
-export const getV1Workouts400Schema = z.any()
+export const getV1Workouts400Schema = z.any();
 
-export const getV1WorkoutsQueryResponseSchema = z.lazy(() => getV1Workouts200Schema)
+export const getV1WorkoutsQueryResponseSchema = z.lazy(
+  () => getV1Workouts200Schema,
+);

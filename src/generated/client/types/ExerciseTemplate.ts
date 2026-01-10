@@ -8,30 +8,30 @@ export type ExerciseTemplate = {
    * @description The exercise template ID.
    * @type string | undefined
    */
-  id?: string
+  id?: string;
   /**
    * @description The exercise title.
    * @type string | undefined
    */
-  title?: string
+  title?: string;
   /**
    * @description The exercise type.
    * @type string | undefined
    */
-  type?: string
+  type?: string;
   /**
    * @description The primary muscle group of the exercise.
    * @type string | undefined
    */
-  primary_muscle_group?: string
+  primary_muscle_group?: string;
   /**
    * @description The secondary muscle groups of the exercise.
    * @type array | undefined
    */
-  secondary_muscle_groups?: string[]
+  secondary_muscle_groups?: string[];
   /**
    * @description A boolean indicating whether the exercise is a custom exercise.
    * @type boolean | undefined
    */
-  is_custom?: boolean
-}
+  is_custom?: boolean;
+};

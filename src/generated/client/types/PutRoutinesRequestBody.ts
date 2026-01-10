@@ -3,7 +3,7 @@
  * Do not edit manually.
  */
 
-import type { PutRoutinesRequestExercise } from './PutRoutinesRequestExercise.ts'
+import type { PutRoutinesRequestExercise } from "./PutRoutinesRequestExercise.ts";
 
 export type PutRoutinesRequestBody = {
   /**
@@ -14,15 +14,15 @@ export type PutRoutinesRequestBody = {
      * @description The title of the routine.
      * @type string | undefined
      */
-    title?: string
+    title?: string;
     /**
      * @description Additional notes for the routine.
      * @type string
      */
-    notes?: string | null
+    notes?: string | null;
     /**
      * @type array | undefined
      */
-    exercises?: PutRoutinesRequestExercise[]
-  }
-}
+    exercises?: PutRoutinesRequestExercise[];
+  };
+};

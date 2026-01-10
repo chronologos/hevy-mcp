@@ -3,17 +3,21 @@
  * Do not edit manually.
  */
 
-import fetch from '@kubb/plugin-client/clients/axios'
+import fetch from "@kubb/plugin-client/clients/axios";
 import type {
   GetV1RoutineFoldersQueryResponse,
   GetV1RoutineFoldersQueryParams,
   GetV1RoutineFoldersHeaderParams,
   GetV1RoutineFolders400,
-} from '../types/GetV1RoutineFolders.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+} from "../types/GetV1RoutineFolders.ts";
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+} from "@kubb/plugin-client/clients/axios";
 
 function getGetV1RoutineFoldersUrl() {
-  return `/v1/routine_folders` as const
+  const res = { method: "GET", url: `/v1/routine_folders` as const };
+  return res;
 }
 
 /**
@@ -25,14 +29,18 @@ export async function getV1RoutineFolders(
   params?: GetV1RoutineFoldersQueryParams,
   config: Partial<RequestConfig> & { client?: typeof fetch } = {},
 ) {
-  const { client: request = fetch, ...requestConfig } = config
+  const { client: request = fetch, ...requestConfig } = config;
 
-  const res = await request<GetV1RoutineFoldersQueryResponse, ResponseErrorConfig<GetV1RoutineFolders400>, unknown>({
-    method: 'GET',
-    url: getGetV1RoutineFoldersUrl().toString(),
+  const res = await request<
+    GetV1RoutineFoldersQueryResponse,
+    ResponseErrorConfig<GetV1RoutineFolders400>,
+    unknown
+  >({
+    method: "GET",
+    url: getGetV1RoutineFoldersUrl().url.toString(),
     params,
     ...requestConfig,
     headers: { ...headers, ...requestConfig.headers },
-  })
-  return res.data
+  });
+  return res.data;
 }

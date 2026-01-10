@@ -1,7 +1,7 @@
 # hevy-mcp: Model Context Protocol Server for Hevy Fitness API
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![smithery badge](https://smithery.ai/badge/@chrisdoc/hevy-mcp)](https://smithery.ai/server/@chrisdoc/hevy-mcp)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 A Model Context Protocol (MCP) server implementation that interfaces with the [Hevy fitness tracking app](https://www.hevyapp.com/) and its [API](https://api.hevyapp.com/docs/). This server enables AI assistants to access and manage workout data, routines, exercise templates, and more through the Hevy API (requires PRO subscription).
 
@@ -13,20 +13,34 @@ A Model Context Protocol (MCP) server implementation that interfaces with the [H
 - **Folder Organization**: Manage routine folders
 - **Webhook Subscriptions**: Create, view, and delete webhook subscriptions for workout events
 
+> **Note:** HTTP transport and Docker images remain deprecated. Smithery deployment now uses the official TypeScript runtime flow (no Docker required), or you can run the server locally via stdio (e.g., `npx hevy-mcp`). Existing GHCR images remain available but are no longer updated.
+
+## Quick start
+
+Pick the workflow that fits your setup:
+
+| Scenario | Command | Requirements |
+| --- | --- | --- |
+| One-off stdio run | `HEVY_API_KEY=sk_live... npx -y hevy-mcp` | Node.js ≥ 20, Hevy API key |
+| Local development | `pnpm install && pnpm run dev` | `.env` with `HEVY_API_KEY`, pnpm via Corepack |
+| Smithery playground / deploy | `pnpm run smithery:dev` / `pnpm run smithery:build` | `HEVY_API_KEY`, `SMITHERY_API_KEY` (or `pnpm dlx @smithery/cli login`) |
+
 ## Prerequisites
 
-- Node.js (v20 or higher)
-- npm or yarn
+- Node.js (v20 or higher; strongly recommended to use the exact version pinned in
+  `.nvmrc` to match CI)
+- pnpm (via Corepack)
 - A Hevy API key
+  - Optional: A Smithery account + API key/login if you plan to deploy via Smithery
 
 ## Installation
 
-### Installing via Smithery
+### Run via npx (recommended)
 
-To install hevy-mcp for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@chrisdoc/hevy-mcp):
+You can launch the server directly without cloning:
 
 ```bash
-npx -y @smithery/cli install @chrisdoc/hevy-mcp --client claude
+HEVY_API_KEY=your_hevy_api_key_here npx -y hevy-mcp
 ```
 
 ### Manual Installation
@@ -36,20 +50,22 @@ git clone https://github.com/chrisdoc/hevy-mcp.git
 cd hevy-mcp
 
 # Install dependencies
-npm install
+corepack use pnpm@10.22.0
+pnpm install
 
-# Create .env file from sample
+# Create .env and add your keys (never commit real keys)
 cp .env.sample .env
-# Edit .env and add your Hevy API key
+# Edit .env and add at least HEVY_API_KEY. Add SMITHERY_API_KEY if you use Smithery CLI.
 ```
 
 ### Integration with Cursor
 
-To use this MCP server with Cursor, you need to update your `~/.cursor/mcp.json` file by adding the following configuration:
+To use this MCP server with Cursor, add/merge this server entry under
+`"mcpServers"` in `~/.cursor/mcp.json`:
 
 ```json
 {
-  "hevy-mcp-server": {
+  "hevy-mcp": {
     "command": "npx",
     "args": ["-y", "hevy-mcp"],
     "env": {
@@ -61,13 +77,41 @@ To use this MCP server with Cursor, you need to update your `~/.cursor/mcp.json`
 
 Make sure to replace `your-api-key-here` with your actual Hevy API key.
 
+If your `mcp.json` already contains other servers, do not replace the whole
+file—merge the `"hevy-mcp"` entry into your existing `"mcpServers"` object.
+
+The `"hevy-mcp"` key name is arbitrary. If you already have an existing config
+using a different name (for example `"hevy-mcp-server"`), you can keep it.
+
+If you already have an existing `"mcpServers"` object, merge the `"hevy-mcp"`
+entry into it without removing other servers.
+
+<details>
+<summary><strong>Example full ~/.cursor/mcp.json</strong></summary>
+
+```json
+{
+  "mcpServers": {
+    "hevy-mcp": {
+      "command": "npx",
+      "args": ["-y", "hevy-mcp"],
+      "env": {
+        "HEVY_API_KEY": "your-api-key-here"
+      }
+    }
+  }
+}
+```
+
+</details>
+
 
 ## Configuration
 
 You can supply your Hevy API key in two ways:
 
 1. Environment variable (`HEVY_API_KEY`)
-2. Command-line argument (`--hevy-api-key=your_key` or `hevy-api-key=your_key` after `--` when using npm scripts)
+2. Command-line argument (`--hevy-api-key=your_key` or `hevy-api-key=your_key` after `--` when using pnpm scripts)
 
 Create a `.env` file in the project root (you can copy from [.env.sample](.env.sample)) with the following content if using the environment variable approach:
 
@@ -78,81 +122,124 @@ HEVY_API_KEY=your_hevy_api_key_here
 Replace `your_hevy_api_key_here` with your actual Hevy API key. If you prefer the command argument approach you can skip setting the environment variable and start the server with for example:
 
 ```bash
-npm start -- --hevy-api-key=your_hevy_api_key_here
+pnpm start -- --hevy-api-key=your_hevy_api_key_here
 ```
 
-Or in HTTP mode:
+### Sentry monitoring
 
-```bash
-npm start -- --http --hevy-api-key=your_hevy_api_key_here
-```
+`hevy-mcp` ships with Sentry monitoring baked into the built MCP server so
+that usage and errors from published builds can be observed.
 
-## Transport Modes
+The server initializes `@sentry/node` with a fixed DSN, release name derived
+from the package version, and tracing settings
+directly in the code (see `src/index.ts`), and wraps the underlying
+`McpServer` with `Sentry.wrapMcpServerWithSentry` so requests and tool calls
+are captured by Sentry automatically. The configuration uses
+`sendDefaultPii: false` to keep Sentry's default PII collection disabled.
 
-The MCP server supports two transport modes:
+There is currently no built-in toggle to disable Sentry for the published
+package. If you need a build without Sentry telemetry, you can fork the
+repository and remove the Sentry initialization in `src/index.ts`.
 
-### Stdio Transport (Default)
+## Transport
 
-The default mode uses stdio transport, which is suitable for integration with MCP clients like Claude Desktop and Cursor:
+### Deploy via Smithery (TypeScript runtime)
 
-```bash
-npm start
-# or
-node dist/index.js
-```
+Smithery can bundle and host `hevy-mcp` without Docker by importing the exported `createServer` and `configSchema` from `src/index.ts`.
 
-### HTTP Transport
+1. Ensure dependencies are installed: `pnpm install`
+2. Launch the Smithery playground locally:
 
-The server can also run in HTTP mode for remote access or web-based integrations:
+   ```bash
+   pnpm run smithery:dev
+   ```
 
-```bash
-# Start in HTTP mode (env var)
-npm start -- --http
-# Start in HTTP mode (CLI arg)
-npm start -- --http --hevy-api-key=your_hevy_api_key_here
-# Or using node directly
-node dist/index.js --http --hevy-api-key=your_hevy_api_key_here
+   The CLI will prompt for `HEVY_API_KEY`, invoke `createServer({ config })`, and open the Smithery MCP playground.
 
-# Using environment variable
-MCP_TRANSPORT=http npm start
-```
+3. Build the deployable bundle:
 
-#### HTTP Configuration
+   ```bash
+   pnpm run smithery:build
+   ```
 
-The HTTP transport can be configured using environment variables:
+4. Connect the repository to Smithery and trigger a deployment from their dashboard. Configuration is handled entirely through the exported Zod schema, so no additional `smithery.yaml` env mapping is required.
 
-```env
-# Transport mode
-MCP_TRANSPORT=http
+> **Why are `chalk`, `cors`, and `@smithery/sdk` dependencies?** Smithery’s TypeScript runtime injects its own Express bootstrap that imports these packages. Declaring them in `package.json` ensures the Smithery CLI can bundle your server successfully.
 
-# HTTP server configuration
-MCP_HTTP_HOST=127.0.0.1
-PORT=3000
+### Stdio Only (Current)
 
-# DNS rebinding protection (recommended for production)
-MCP_DNS_REBINDING_PROTECTION=true
-MCP_ALLOWED_HOSTS=127.0.0.1,localhost
-```
+**As of version 1.18.0, hevy-mcp only supports stdio transport.** HTTP/SSE
+transport has been completely removed.
 
-#### HTTP Endpoints
+hevy-mcp runs exclusively over stdio, which works seamlessly with MCP-aware clients like Claude Desktop and Cursor. The server communicates via standard input/output streams using JSON-RPC messages.
 
-When running in HTTP mode, the following endpoints are available:
+### Migration from HTTP/SSE Transport
 
-- `POST /mcp` - MCP client-to-server communication
-- `GET /mcp` - Server-to-client notifications (SSE)
-- `DELETE /mcp` - Session termination
-- `GET /health` - Health check endpoint
+**If you were using HTTP or SSE transport in an older version (< 1.18.0), you must migrate to stdio.**
 
-#### Session Management
+The HTTP/SSE transport was removed in v1.18.0 to simplify the codebase and focus
+on the stdio-native MCP experience. If you're encountering errors like:
 
-The HTTP transport includes session management for stateful connections. Each client session is identified by a unique session ID that must be included in the `mcp-session-id` header for subsequent requests.
+- `"stream is not readable"` when making HTTP requests
+- `"HTTP transport mode has been removed from hevy-mcp"`
+- Server messages about SSE mode on `http://localhost:3001`
+
+You are likely running an outdated build or trying to connect with an HTTP-based client. Here's how to fix it:
+
+#### Steps to Migrate:
+
+1. **Update to the latest version:**
+   ```bash
+   npx -y hevy-mcp@latest
+   # or if installed locally:
+   pnpm install hevy-mcp@latest
+   ```
+
+2. **Update your client configuration** to use stdio transport instead of HTTP. For example, in Cursor's `~/.cursor/mcp.json`:
+   
+   **Old HTTP-based config (no longer supported):**
+   ```json
+   {
+     "hevy-mcp": {
+       "url": "http://localhost:3001/sse"
+     }
+   }
+   ```
+   
+   **New stdio-based config (current):**
+   ```json
+   {
+     "hevy-mcp": {
+       "command": "npx",
+       "args": ["-y", "hevy-mcp"],
+       "env": {
+         "HEVY_API_KEY": "your-api-key-here"
+       }
+     }
+   }
+   ```
+
+3. **Clear any cached builds:**
+   ```bash
+   # If you have a local clone, rebuild
+   pnpm run build
+   
+   # Or remove node_modules and reinstall
+   rm -rf node_modules dist
+   pnpm install
+   pnpm run build
+   ```
+
+4. **Ensure you're not running a custom HTTP server.** If you have custom code that imports `createHttpServer()`, it will now throw an error. Remove those imports and use stdio transport instead.
+
+If you absolutely need HTTP/SSE transport, you can use version `1.17.x` or earlier, but those versions are no longer maintained and contain known bugs (including the "stream is not readable" issue caused by middleware conflicts).
 
 ## Usage
 
 ### Development
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 This starts the MCP server in development mode with hot reloading.
@@ -160,76 +247,13 @@ This starts the MCP server in development mode with hot reloading.
 ### Production
 
 ```bash
-npm run build
-npm start
+pnpm run build
+pnpm start
 ```
 
-### Docker
+### Docker (deprecated)
 
-The project includes a Dockerfile for containerized deployments. Docker images are automatically built and pushed to GitHub Container Registry (GHCR) during the CI/CD process.
-
-#### Using Pre-built Images
-
-Pull and run the latest image:
-
-```bash
-docker run -d \
-  --name hevy-mcp \
-  -e HEVY_API_KEY=your_api_key_here \
-  -p 3000:3000 \
-  ghcr.io/chrisdoc/hevy-mcp:latest
-
-# Or using CLI argument for the key (omit env var)
-docker run -d \
-  --name hevy-mcp \
-  -p 3000:3000 \
-  ghcr.io/chrisdoc/hevy-mcp:latest \
-  hevy-api-key=your_api_key_here
-```
-
-#### Building Locally
-
-```bash
-# Build the image
-docker build -t hevy-mcp .
-
-# Run the container
-docker run -d \
-  --name hevy-mcp \
-  -e HEVY_API_KEY=your_api_key_here \
-  -p 3000:3000 \
-  hevy-mcp
-
-# Or with CLI argument
-docker run -d \
-  --name hevy-mcp \
-  -p 3000:3000 \
-  hevy-mcp \
-  hevy-api-key=your_api_key_here
-```
-
-#### Docker Compose Example
-
-```yaml
-version: '3.8'
-services:
-  hevy-mcp:
-    image: ghcr.io/chrisdoc/hevy-mcp:latest
-    environment:
-      - HEVY_API_KEY=your_api_key_here
-      - MCP_TRANSPORT=http
-      - MCP_HTTP_HOST=0.0.0.0
-      - PORT=3000
-    ports:
-      - "3000:3000"
-    restart: unless-stopped
-```
-
-#### Available Image Tags
-
-- `latest` - Latest stable release
-- `main` - Latest development build from main branch  
-- `v1.8.8`, `v1.8`, `v1` - Semantic version tags for releases
+Docker-based workflows have been retired so we can focus on the stdio-native experience. The bundled `Dockerfile` now exits with a clear message to prevent accidental builds, and `.dockerignore` simply documents the deprecation. Previously published images remain available on GHCR (for example `ghcr.io/chrisdoc/hevy-mcp:latest`), but they are **no longer updated**. For the best experience, run the server locally via `npx hevy-mcp` or your own Node.js runtime.
 
 ## Available MCP Tools
 
@@ -283,8 +307,13 @@ hevy-mcp/
 │   │   │   ├── schemas/   # Zod schemas
 │   │   │   └── mocks/     # Mock data
 │   └── utils/             # Helper utilities
-│       ├── formatters.ts  # Data formatting helpers
-│       └── validators.ts  # Input validation helpers
+│       ├── config.ts              # Env/CLI config parsing
+│       ├── error-handler.ts       # Tool error wrapper + response builder
+│       ├── formatters.ts          # Domain formatting helpers
+│       ├── hevyClient.ts          # API client factory
+│       ├── httpServer.ts          # Legacy HTTP transport (deprecated; throws explicit error; kept only for backward compatibility - removing may be breaking)
+│       ├── response-formatter.ts  # MCP response utilities
+│       └── tool-helpers.ts        # Zod schema -> TS type inference
 ├── scripts/               # Build and utility scripts
 └── tests/                 # Test suite
     ├── integration/       # Integration tests with real API
@@ -298,7 +327,7 @@ hevy-mcp/
 This project uses Biome for code formatting and linting:
 
 ```bash
-npm run check
+pnpm run check
 ```
 
 ### Testing
@@ -308,23 +337,25 @@ npm run check
 To run all tests (unit and integration), use:
 
 ```bash
-npm test
+pnpm test
 ```
 
-> **Note:** If the `HEVY_API_KEY` environment variable is set, integration tests will also run. If not, only unit tests will run.
+> **Note:** `pnpm test` runs **all** tests. Integration tests will fail by design if
+> `HEVY_API_KEY` is missing. If you don’t have an API key locally, use the unit
+> test command below.
 
 #### Run Only Unit Tests
 
 To run only unit tests (excluding integration tests):
 
 ```bash
-npx vitest run --exclude tests/integration/**
+pnpm vitest run --exclude tests/integration/**
 ```
 
 Or with coverage:
 
 ```bash
-npx vitest run --coverage --exclude tests/integration/**
+pnpm vitest run --coverage --exclude tests/integration/**
 ```
 
 #### Run Only Integration Tests
@@ -332,7 +363,7 @@ npx vitest run --coverage --exclude tests/integration/**
 To run only the integration tests (requires a valid `HEVY_API_KEY`):
 
 ```bash
-npx vitest run tests/integration
+pnpm vitest run tests/integration
 ```
 
 **Note:** The integration tests will fail if the `HEVY_API_KEY` environment variable is not set. This is by design to ensure that the tests are always run with a valid API key.
@@ -341,8 +372,11 @@ npx vitest run tests/integration
 
 For GitHub Actions:
 
-1. Unit tests will always run on every push and pull request
-2. Integration tests will only run if the `HEVY_API_KEY` secret is set in the repository settings
+1. Unit + integration tests are executed as part of the normal `Build and Test` workflow
+2. Integration tests require the `HEVY_API_KEY` secret to be set
+
+The workflow runs `pnpm vitest run --coverage` and provides `HEVY_API_KEY` from
+repository secrets.
 
 To set up the `HEVY_API_KEY` secret:
 
@@ -352,18 +386,60 @@ To set up the `HEVY_API_KEY` secret:
 4. Set the name to `HEVY_API_KEY` and the value to your Hevy API key
 5. Click "Add secret"
 
-If the secret is not set, the integration tests step will be skipped with a message indicating that the API key is missing.
+If the secret is not set, the integration tests will fail (by design).
+
+To set up Sentry secrets for source map uploads during builds:
+
+The build process uses Sentry's Rollup plugin to upload source maps. You need to configure three secrets:
+
+1. Go to your GitHub repository
+2. Click on "Settings" > "Secrets and variables" > "Actions"
+3. Add the following secrets:
+   - `SENTRY_ORG`: Your Sentry organization slug
+   - `SENTRY_PROJECT`: Your Sentry project slug
+   - `SENTRY_AUTH_TOKEN`: A Sentry auth token with `project:releases` scope
+
+   You can create a Sentry auth token at: https://sentry.io/settings/account/api/auth-tokens/
+
+If these secrets are not set, the build will still succeed, but source maps will not be uploaded to Sentry.
+
+Note: GitHub does not provide secrets to pull requests from forks by default, so
+fork PRs may fail CI unless a maintainer reruns the checks with `HEVY_API_KEY`
+available.
+
+If CI is failing only because the fork PR is missing `HEVY_API_KEY`, that is
+expected; maintainers may rerun the workflow with secrets enabled.
+
+For contributors from forks: CI failures caused solely by missing `HEVY_API_KEY`
+do not indicate a problem with your changes.
+
+All other CI checks (build, formatting/linting, unit tests, etc.) are still
+expected to pass.
+
+Only failures caused solely by missing `HEVY_API_KEY` on forked PRs are
+considered acceptable.
 
 ### Generating API Client
 
 The API client is generated from the OpenAPI specification using [Kubb](https://kubb.dev/):
 
 ```bash
-npm run export-specs
-npm run build:client
+pnpm run export-specs
+pnpm run build:client
 ```
 
 Kubb generates TypeScript types, API clients, Zod schemas, and mock data from the OpenAPI specification.
+
+### Troubleshooting
+
+- **Rollup optional dependency missing**: If you see an error similar to `Cannot find module @rollup/rollup-linux-x64-gnu`, set the environment variable `ROLLUP_SKIP_NODEJS_NATIVE_BUILD=true` before running `pnpm run build`. This forces Rollup to use the pure JavaScript fallback and avoids the npm optional dependency bug on some Linux runners.
+
+### Troubleshooting Smithery deployments
+
+- **`smithery.yaml` validation failed (unexpected fields)**: Only `runtime`, `target`, and `env` are allowed for the TypeScript runtime. Remove `entry`, `name`, or other fields.
+- **`Could not resolve "chalk"/"cors"`**: Run `pnpm install` so the runtime dependencies listed in `package.json` are present before invoking Smithery.
+- **`Failed to connect to Smithery API: Unauthorized`**: Log in via `pnpm dlx @smithery/cli login` or set `SMITHERY_API_KEY` in `.env`.
+- **Tunnel crashes with `RangeError: Invalid count value`**: This is a known issue in certain `@smithery/cli` builds. Upgrade/downgrade the CLI (e.g., `pnpm add -D @smithery/cli@latest`) or contact Smithery support.
 
 ## License
 
